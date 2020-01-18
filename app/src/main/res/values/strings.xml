@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TOKASON</string>
+    <string name="sub_name">Aplikasi Kasir Online</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="periksa_koneksi_coba_lagi"><![CDATA[Periksa Koneksi & Coba Lagi]]></string>
+    <string name="title_activity_transaksi_baru">TransaksiBaruActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_tab_start_date">Dari</string>
+    <string name="ttile_tab_end_date">Sampai</string>
+    <string name="but_done">Pilih</string>
+</resources>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LupaSandiActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_verifikasi"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kami telah mengirim kode verifikasi ke :"
+            android:textColor="@color/ColorPrimaryText" />
+
+        <TextView
+            android:id="@+id/txtNoorEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=", tolong cek."
+            android:textColor="@color/ColorPrimaryText" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutKodeVerifikasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextKodeVerifikasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Kode verifikasi" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_marginTop="20dp"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/btnKirimVerifikasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kirim"
+            android:textAllCaps="false"/>
+
+        <TextView
+            android:id="@+id/kirimulangverifikasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:text="Kirim ulang kode verifikasi ?"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="Main Navigation">
+            <menu>
+                <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_dashboard"
+                    android:icon="@drawable/ic_dashboard"
+                    android:title="Dashboard" />
+                <item
+                    android:id="@+id/nav_transaksi_penjualan"
+                    android:icon="@drawable/ic_transaksi_penjualan"
+                    android:title="Transaksi Penjualan" />
+                </group>
+            </menu>
+        </item>
+
+        <item android:title="Laporan">
+            <menu>
+                <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_laporan_harian"
+                    android:icon="@drawable/ic_laporan_harian"
+                    android:title="Laporan Penjualan Harian" />
+                <item
+                    android:id="@+id/nav_laporan_bulanan"
+                    android:icon="@drawable/ic_laporan_bulanan"
+                    android:title="Laporan Penjualan Bulanan" />
+                <item
+                    android:id="@+id/nav_laporan_tahunan"
+                    android:icon="@drawable/ic_laporan_tahunan"
+                    android:title="Laporan Penjualan Tahunan" />
+                </group>
+            </menu>
+        </item>
+
+        <item android:title="Data Master">
+            <menu>
+                <group
+                    android:id="@+id/grupMaster"
+                    android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_pelanggan"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_data_pelanggan"
+                        android:title="Data Pelanggan" />
+                </group>
+            </menu>
+        </item>
+
+        <item android:title="Pengaturan">
+            <menu>
+                <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/setting_printer"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_local_printshop_black_24dp"
+                    android:title="Setting Printer" />
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/ic_profile"
+                    android:title="Profile" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="Logout" />
+                </group>
+            </menu>
+        </item>
+    </group>
+</menu>

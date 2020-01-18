@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <!-- NOTE: This list should be displayed in a list
+    instead of nested layouts -->
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Pilih Foto"
+        android:textSize="18sp"
+        android:typeface="sans"
+        app:fontFamily="sans-serif" />
+
+    <Button
+        android:clickable="true"
+        android:foreground="?android:selectableItemBackground"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:id="@+id/galeri1"
+        style="@style/Base.Widget.AppCompat.ButtonBar.AlertDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/ic_photo_library_black_24dp"
+        android:text="Galeri"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:textAlignment="textStart"
+        android:textColor="@color/ColorPrimaryText"
+        android:textSize="18sp" />
+
+    <Button
+        android:clickable="true"
+        android:foreground="?android:selectableItemBackground"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:id="@+id/kamera1"
+        style="@style/Base.Widget.AppCompat.ButtonBar.AlertDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/ic_camera_alt_black_24dp"
+        android:text="Kamera"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:textAlignment="textStart"
+        android:textColor="@color/ColorPrimaryText"
+        android:textSize="18sp" />
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/ic_datepicker"
+        android:icon="@drawable/ic_date_range_white_24dp"
+        android:title="Pilih "
+        app:showAsAction="always" />
+    <item
+        android:icon="@drawable/ic_more_vert_white_24dp"
+        app:showAsAction="always"
+        android:title="More">
+        <menu>
+            <item
+                android:id="@+id/ic_bagikan_laporan"
+                android:icon="@drawable/ic_share_black_24dp"
+                android:title="Bagikan"
+                app:showAsAction="withText"/>
+            <item
+                android:id="@+id/ic_export_laporan"
+                android:icon="@drawable/ic_file_download_black_24dp"
+                android:title="Export to excel"
+                app:showAsAction="withText"/>
+            <item
+                android:id="@+id/ic_print"
+                android:icon="@drawable/ic_print_black_24dp"
+                android:title="Print"
+                app:showAsAction="withText"/>
+        </menu>
+    </item>
+</menu>

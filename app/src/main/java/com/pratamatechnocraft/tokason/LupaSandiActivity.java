@@ -1,0 +1,90 @@
+package com.pratamatechnocraft.tokason;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
+
+public class LupaSandiActivity extends AppCompatActivity {
+    EditText editTextUsernameLupa;
+    Button btnLanjutLupaSandi;
+    String phoneNumber;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_lupa_sandi);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_lupasandi);
+        setSupportActionBar(toolbar);
+        this.setTitle("Lupa kata sandi ?");
+        toolbar.setSubtitleTextColor( ContextCompat.getColor(this, R.color.colorIcons) );
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.colorIcons), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        editTextUsernameLupa = findViewById(R.id.editTextUsernameLupa);
+        btnLanjutLupaSandi = findViewById(R.id.btnLanjutLupaSandi);
+
+        btnLanjutLupaSandi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phoneNumber = editTextUsernameLupa.getText().toString().trim();
+                if (phoneNumber.isEmpty()){
+                    editTextUsernameLupa.setError("Tidak boleh kosong !!");
+                }else{
+                    sendVerificationCode(phoneNumber);
+                }
+            }
+        });
+    }
+
+    private void sendVerificationCode(String phoneNumber){
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                "+62"+phoneNumber,
+                60,
+                TimeUnit.SECONDS,
+                this,
+                mCall
+        );
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCall = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            Log.e("MainActivity" , "Tidak Berhasil");
+        }
+
+        @Override
+        public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
+            String mVerificationId = verificationId;
+            Log.e("MainActivity" , "Verification id : " + verificationId);
+            Intent intent = new Intent(LupaSandiActivity.this , VerifikasiActivity.class);
+            intent.putExtra("verificationId" , verificationId);
+            intent.putExtra("username" , phoneNumber);
+            startActivity(intent);
+            finish();
+        }
+    };
+}

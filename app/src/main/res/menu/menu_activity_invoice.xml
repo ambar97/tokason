@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:iconTintMode="screen"
+        android:iconTint="#FFF"
+        android:id="@+id/icon_bagikan_invoice"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="Bagikan"
+        app:showAsAction="always" />
+    <item
+        android:iconTintMode="screen"
+        android:iconTint="#FFF"
+        android:id="@+id/icon_print_invoice"
+        android:icon="@drawable/ic_print_black_24dp"
+        android:title="Print"
+        app:showAsAction="always" />
+
+
+</menu>
