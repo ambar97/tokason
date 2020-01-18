@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,10 +31,10 @@ import java.util.Map;
 
 public class DaftarActivity extends AppCompatActivity {
     EditText txtNamaDepan, txtNamaBelakang, txtNoTelepon, txtAlamat, txtNamaToko, txtAlamatToko,
-            txtRefferalCode, txtUsername, txtPassword;
+            txtRefferalCode, txtUsername, txtPassword, txtEmail;
     CheckBox checkBoxAgrrement;
     Button btnDaftar;
-    String namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko, referralCode, username, password;
+    String namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko, referralCode, username, password, email;
     BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
     private String baseUrl = baseUrlApiModel.getBaseURL();
     private static String URL_Daftar = "api/user";
@@ -47,6 +46,7 @@ public class DaftarActivity extends AppCompatActivity {
 
         txtUsername = findViewById(R.id.username);
         txtPassword = findViewById(R.id.password);
+        txtEmail = findViewById(R.id.email);
         txtNamaDepan = findViewById(R.id.namaDepanPemilik);
         txtNamaBelakang = findViewById(R.id.namaBelakangPemilik);
         txtNoTelepon = findViewById(R.id.NotelpPemilik);
@@ -77,6 +77,7 @@ public class DaftarActivity extends AppCompatActivity {
                 referralCode = txtRefferalCode.getText().toString().trim();
                 username = txtUsername.getText().toString().trim();
                 password = txtPassword.getText().toString().trim();
+                email =txtEmail.getText().toString().trim();
                 referralCode = txtRefferalCode.getText().toString().trim();
 
                 if (namaDepan.isEmpty()) {
@@ -87,7 +88,9 @@ public class DaftarActivity extends AppCompatActivity {
                     txtNoTelepon.setError("No Telepon tidak boleh kosong!");
                 } else if (alamat.isEmpty()) {
                     txtAlamat.setError("Alamat tidak boleh kosong!");
-                }else if (username.isEmpty()) {
+                } else if (email.isEmpty()) {
+                    txtAlamat.setError("Alamat tidak boleh kosong!");
+                } else if (username.isEmpty()) {
                     txtUsername.setError("Alamat tidak boleh kosong!");
                 } else if (password.isEmpty()) {
                     txtPassword.setError("Alamat tidak boleh kosong!");
@@ -98,14 +101,16 @@ public class DaftarActivity extends AppCompatActivity {
                 } else if (!checkBoxAgrrement.isChecked()) {
                     checkBoxAgrrement.setError("Anda harus menyetujui syarat dan ketentuan");
                 } else {
-                    prosesDaftar(namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko, referralCode, username, password);
+                    prosesDaftar(namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko,
+                            referralCode, username, password, email);
                 }
             }
         });
     }
 
     private void prosesDaftar(final String namaDepan, final String namaBelakang, final String noTelp, final String alamat,
-                              final String namaToko, final String alamatToko, final String referralCode, final String username, final String password) {
+                              final String namaToko, final String alamatToko, final String referralCode, final String username,
+                              final String password, final String email) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + URL_Daftar, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -118,10 +123,17 @@ public class DaftarActivity extends AppCompatActivity {
                         Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DaftarActivity.this, VerifikasiActivity.class);
                         startActivity(intent);
-                    }else if(kode.equals("2")) {
-                        // TODO: 1/18/2020 username/no telpon/ email sudah terdaftar 
-                    }else {
+                    } else if (kode.equals("2")) {
                         Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
+                    } else if (kode.equals("3")){
+                        Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
+                        txtNoTelepon.setError(pesan);
+                    } else if (kode.equals("4")){
+                        Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
+                        txtEmail.setError(pesan);
+                    } else if (kode.equals("5")){
+                        Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
+                        txtUsername.setError(pesan);
                     }
 
                 } catch (JSONException e) {
@@ -138,12 +150,13 @@ public class DaftarActivity extends AppCompatActivity {
         }) {
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("nama_depan", namaDepan);
                 params.put("nama_belakang", namaBelakang);
                 params.put("no_telp", noTelp);
                 params.put("alamat", alamat);
+                params.put("email", email);
                 params.put("username", username);
                 params.put("password", password);
                 params.put("nama_outlet", namaToko);
