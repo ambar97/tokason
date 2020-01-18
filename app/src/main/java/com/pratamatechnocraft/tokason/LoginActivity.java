@@ -146,7 +146,9 @@ public class LoginActivity extends AppCompatActivity {
                         btnLogin.setVisibility(View.VISIBLE);
                         Toast.makeText(LoginActivity.this, "Username Tidak Valid !!", Toast.LENGTH_SHORT).show();
                     } else if(success.equals("4")) {
-                        // TODO: 1/18/2020 AKUN BELUM VERIFIKASI 
+                        finish();
+                        Intent intent = new Intent(LoginActivity.this, VerifikasiActivity.class);
+                        startActivity(intent);
                     } else if(success.equals("5")) {
                         // TODO: 1/18/2020 AKUN BELUM BAYAR 
                     }
