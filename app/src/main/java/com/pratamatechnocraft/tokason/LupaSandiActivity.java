@@ -69,21 +69,22 @@ public class LupaSandiActivity extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCall = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-
+            Log.d("LupaSandiActivity", ""+ phoneAuthCredential);
         }
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Log.e("MainActivity" , "Tidak Berhasil");
+            Log.w("LupaSandiActivity" , "Tidak Berhasil: "+ e);
+
         }
 
         @Override
         public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
-            String mVerificationId = verificationId;
-            Log.e("MainActivity" , "Verification id : " + verificationId);
+            Log.d("LupaSandiActivity" , "Verification id : " + verificationId);
             Intent intent = new Intent(LupaSandiActivity.this , VerifikasiActivity.class);
             intent.putExtra("verificationId" , verificationId);
             intent.putExtra("username" , phoneNumber);
+            intent.putExtra("from" , "lupa");
             startActivity(intent);
             finish();
         }

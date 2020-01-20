@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
 
 import org.json.JSONException;
@@ -28,6 +32,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class DaftarActivity extends AppCompatActivity {
     EditText txtNamaDepan, txtNamaBelakang, txtNoTelepon, txtAlamat, txtNamaToko, txtAlamatToko,
@@ -114,15 +119,18 @@ public class DaftarActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + URL_Daftar, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d("response", ""+response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String kode = jsonObject.getString("kode");
                     String pesan = jsonObject.getString("pesan");
                     if (kode.equals("1")) {
-                        finish();
+//                        finish();
                         Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(DaftarActivity.this, VerifikasiActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(DaftarActivity.this, VerifikasiActivity.class);
+//                        startActivity(intent);
+                        sendVerificationCode(noTelp);
+//                        finish();
                     } else if (kode.equals("2")) {
                         Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
                     } else if (kode.equals("3")){
@@ -181,4 +189,39 @@ public class DaftarActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void sendVerificationCode(String phoneNumber){
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                "+62"+phoneNumber,
+                60,
+                TimeUnit.SECONDS,
+                this,
+                mCall
+        );
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCall = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            Log.d("DaftarActivity", ""+ phoneAuthCredential);
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            Log.e("DaftarActivity" , "Tidak Berhasil");
+        }
+
+        @Override
+        public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
+            String mVerificationId = verificationId;
+            Log.e("DaftarActivity" , "Verification id : " + verificationId);
+            Intent intent = new Intent(DaftarActivity.this , VerifikasiActivity.class);
+            intent.putExtra("verificationId" , verificationId);
+            intent.putExtra("username" , noTelp);
+            intent.putExtra("from" , "daftar");
+            startActivity(intent);
+            finish();
+        }
+    };
 }

@@ -22,6 +22,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
@@ -33,12 +36,13 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnLupaSandi, btnDaftar;
     EditText eTxtUsername, eTxtPassword;
-    String username, password;
+    String username, password, phoneNumber;
     ProgressBar loading;
     BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
     private String baseUrl = baseUrlApiModel.getBaseURL();
@@ -146,9 +150,13 @@ public class LoginActivity extends AppCompatActivity {
                         btnLogin.setVisibility(View.VISIBLE);
                         Toast.makeText(LoginActivity.this, "Username Tidak Valid !!", Toast.LENGTH_SHORT).show();
                     } else if(success.equals("4")) {
-                        finish();
-                        Intent intent = new Intent(LoginActivity.this, VerifikasiActivity.class);
-                        startActivity(intent);
+                        JSONObject data_user = jsonObject.getJSONObject("data_user");
+                        phoneNumber = String.valueOf(data_user.getString("no_telp"));
+
+                        Log.d("nomer", phoneNumber);
+//                        Intent intent = new Intent(LoginActivity.this, VerifikasiActivity.class);
+//                        startActivity(intent);
+                        sendVerificationCode(phoneNumber);
                     } else if(success.equals("5")) {
                         // TODO: 1/18/2020 AKUN BELUM BAYAR 
                     }
@@ -192,5 +200,42 @@ public class LoginActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+    private void sendVerificationCode(String phoneNumber){
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                "+62"+phoneNumber,
+                60,
+                TimeUnit.SECONDS,
+                this,
+                mCall
+        );
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCall = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            Log.d("LoginActivity", ""+ phoneAuthCredential);
+
+
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            Log.w("LoginActivity" , "Tidak Berhasil: "+ e);
+
+        }
+
+        @Override
+        public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
+            Log.d("LoginActivity" , "Verification id : " + verificationId);
+            Intent intent = new Intent(LoginActivity.this , VerifikasiActivity.class);
+            intent.putExtra("verificationId" , verificationId);
+            intent.putExtra("username" , phoneNumber);
+            intent.putExtra("from" , "daftar");
+            startActivity(intent);
+            finish();
+        }
+    };
 
 }
