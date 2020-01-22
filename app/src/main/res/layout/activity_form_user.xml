@@ -219,41 +219,6 @@
                     android:orientation="vertical"
                     android:paddingLeft="5dp">
 
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Level User"
-                        android:textSize="18sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rbglevelUser"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:checkedButton="@+id/rbOwner"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <RadioButton
-                            android:id="@+id/rbOwner"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:duplicateParentState="false"
-                            android:text="Owner"
-                            android:textSize="18sp" />
-
-                        <RadioButton
-                            android:id="@+id/rbKasir"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Kasir"
-                            android:textSize="18sp" />
-
-                    </RadioGroup>
-
                 </LinearLayout>
 
                 <LinearLayout

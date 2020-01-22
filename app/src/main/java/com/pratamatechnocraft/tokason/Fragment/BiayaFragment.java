@@ -77,7 +77,7 @@ public class BiayaFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate( R.layout.fragment_biaya, container, false);
         navigationView = getActivity().findViewById(R.id.nav_view);
-        navigationView.setCheckedItem(R.id.nav_biaya);
+//        navigationView.setCheckedItem(R.id.nav_biaya);
         noDataBiaya = view.findViewById( R.id.noDataBiaya );
         refreshDataBiaya = view.findViewById(R.id.refreshDataBiaya);
         fabTambahDataBiaya = view.findViewById( R.id.fabTambahDataBiaya );

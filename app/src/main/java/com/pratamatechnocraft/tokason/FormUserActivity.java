@@ -54,7 +54,6 @@ public class FormUserActivity extends AppCompatActivity {
 
     private Button btnPilihFotoTambahUser,buttonSimpanTambahUser,buttonBatalTambahUser;
     private RelativeLayout adaGambar, tidakAdaGambar;
-    private RadioGroup rbglevelUser;
     private TextInputLayout inputLayoutUsername,inputLayoutPassword,inputLayoutNamaDepan,inputLayoutNamaBelakang,inputLayoutNoTelp,inputLayoutAlamat;
     private EditText inputUsername,inputPassword,inputNamaDepan,inputNamaBelakang,inputNoTelp,inputAlamat;
     private BottomSheetDialog bottomSheetDialog;
@@ -99,9 +98,6 @@ public class FormUserActivity extends AppCompatActivity {
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.colorIcons), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        /*RADIOBUTTON*/
-        rbglevelUser =  (RadioGroup) findViewById(R.id.rbglevelUser);
 
         /*BUTTON*/
         btnPilihFotoTambahUser = findViewById( R.id.buttonPilihFotoTambahUser );
@@ -177,13 +173,6 @@ public class FormUserActivity extends AppCompatActivity {
         buttonSimpanTambahUser.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int selectedId = rbglevelUser .getCheckedRadioButtonId();
-                String indexRadioButtonLevelUser;
-                if (selectedId == R.id.rbOwner){
-                    indexRadioButtonLevelUser="0";
-                }else{
-                    indexRadioButtonLevelUser="1";
-                }
                 if (i.getStringExtra( "type" ).equals( "tambah" )){
                     if (!validateUsername() || !validatePassword() || !validateNamaDepan() || !validateNamaBelakang() || !validateNamaBelakang() || !validateNotelp() || !validateAlamat()) {
                         return;
@@ -199,7 +188,6 @@ public class FormUserActivity extends AppCompatActivity {
                             inputNamaBelakang.getText().toString().trim(),
                             inputNoTelp.getText().toString().trim(),
                             inputAlamat.getText().toString().trim(),
-                            indexRadioButtonLevelUser,
                             txtFotoTambahUser.getText().toString().trim()
                         );
                     }
@@ -216,7 +204,6 @@ public class FormUserActivity extends AppCompatActivity {
                                 inputNamaBelakang.getText().toString().trim(),
                                 inputNoTelp.getText().toString().trim(),
                                 inputAlamat.getText().toString().trim(),
-                                indexRadioButtonLevelUser,
                                 txtFotoTambahUser.getText().toString().trim()
                         );
                     }
@@ -234,7 +221,7 @@ public class FormUserActivity extends AppCompatActivity {
     }
 
     /*PROSES KE DATABASE*/
-    private void prosesEditUser(final String namaDepan, final String namaBelakang, final String noTelp, final String alamat, final String levelUser, final String fotoUser) {
+    private void prosesEditUser(final String namaDepan, final String namaBelakang, final String noTelp, final String alamat, final String fotoUser) {
         progress.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl+API_URL, new Response.Listener<String>() {
             @Override
@@ -273,7 +260,7 @@ public class FormUserActivity extends AppCompatActivity {
                 params.put("nama_belakang", namaBelakang);
                 params.put("no_telp", noTelp);
                 params.put("alamat", alamat);
-                params.put("level_user", levelUser);
+                params.put("level_user", "1");
                 params.put("foto_user", fotoUser);
                 params.put("api", "edit");
                 return params;
@@ -283,7 +270,7 @@ public class FormUserActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-    private void prosesTambahUser(final String username, final String password, final String namaDepan, final String namaBelakang, final String noTelp, final String alamat, final String levelUser, final String fotoUser) {
+    private void prosesTambahUser(final String username, final String password, final String namaDepan, final String namaBelakang, final String noTelp, final String alamat, final String fotoUser) {
         progress.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl+API_URL, new Response.Listener<String>() {
             @Override
@@ -326,7 +313,7 @@ public class FormUserActivity extends AppCompatActivity {
                 params.put("nama_belakang", namaBelakang);
                 params.put("no_telp", noTelp);
                 params.put("alamat", alamat);
-                params.put("level_user", levelUser);
+                params.put("level_user", "1");
                 params.put("foto_user", fotoUser);
                 params.put("api", "tambah");
                 return params;
@@ -349,13 +336,6 @@ public class FormUserActivity extends AppCompatActivity {
                             inputNamaBelakang.setText( userdetail.getString( "nama_belakang" ) );
                             inputNoTelp.setText( userdetail.getString( "no_telp" ) );
                             inputAlamat.setText( userdetail.getString( "alamat" ) );
-                            if(Integer.parseInt( userdetail.getString( "level_user" ) )==0){
-                                RadioButton rbOwner = findViewById( R.id.rbOwner );
-                                rbOwner.setChecked( true );
-                            }else if(Integer.parseInt( userdetail.getString( "level_user" ) )==1){
-                                RadioButton rbKasir = findViewById( R.id.rbKasir );
-                                rbKasir.setChecked( true );
-                            }
                             if (userdetail.getString( "foto" ).equals( "" )){
                                 adaGambar.setVisibility( View.GONE );
                                 tidakAdaGambar.setVisibility( View.VISIBLE );
