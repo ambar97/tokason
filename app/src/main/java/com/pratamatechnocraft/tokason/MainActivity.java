@@ -204,33 +204,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = itemId;
         if (id == R.id.nav_dashboard) {
             fragment = new DashboardFragment();
-        } else if (id == R.id.nav_transaksi_penjualan) {
+        }
+        else if (id == R.id.nav_transaksi_penjualan) {
             fragment = new TabLayoutFragment(0);
-        } else if (id == R.id.nav_transaksi_pembelian) {
+        }
+        else if (id == R.id.nav_transaksi_pembelian) {
             fragment = new TabLayoutFragment(1);
-        } else if (id == R.id.nav_biaya) {
-            fragment = new TabLayoutFragmentBiaya();
-        } else if (id == R.id.nav_laporan_harian) {
+        }
+//        else if (id == R.id.nav_biaya) {
+//            fragment = new TabLayoutFragmentBiaya();
+//        }
+        else if (id == R.id.nav_laporan_harian) {
             fragment = new LaporanFragment(0);
-        } else if (id == R.id.nav_laporan_bulanan) {
+        }
+        else if (id == R.id.nav_laporan_bulanan) {
             fragment = new LaporanFragment(1);
-        } else if (id == R.id.nav_laporan_tahunan) {
-            fragment = new LaporanFragment(2);
-        }else if (id == R.id.nav_laporan_labarugi) {
+        }
+//        else if (id == R.id.nav_laporan_tahunan) {
+//            fragment = new LaporanFragment(2);
+//        }
+        else if (id == R.id.nav_laporan_labarugi) {
             fragment = new LaporanLabaRugiFragment();
-        }else if (id == R.id.nav_barang) {
+        }
+        else if (id == R.id.nav_barang) {
             fragment = new DataBarangFragment();
-        }else if (id == R.id.nav_kategori_barang) {
+        }
+        else if (id == R.id.nav_kategori_barang) {
             fragment = new DataKategoriBarangFragment();
-        }else if (id == R.id.nav_user) {
+        }
+        else if (id == R.id.nav_user) {
             fragment = new DataUserFragment();
-        }else if (id == R.id.nav_pelanggan) {
-            fragment = new DataPelangganFragment();
-        }else if (id == R.id.nav_profile) {
+        }
+//        else if (id == R.id.nav_pelanggan) {
+//            fragment = new DataPelangganFragment();
+//        }
+        else if (id == R.id.nav_profile) {
             fragment = new ProfileFragment();
-        }else if(id == R.id.setting_printer){
+        }
+        else if(id == R.id.setting_printer){
             fragment = new SettingPrinterFragment();
-        }else if (id == R.id.nav_logout) {
+        }
+        else if (id == R.id.nav_logout) {
             sessionManager.logout();
         }
 
