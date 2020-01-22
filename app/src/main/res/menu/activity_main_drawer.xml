@@ -25,10 +25,10 @@
                     android:checkable="true"
                     android:icon="@drawable/ic_transaksi_pembelian"
                     android:title="Transaksi Pembelian" />
-                <item
-                    android:id="@+id/nav_biaya"
-                    android:icon="@drawable/ic_biaya"
-                    android:title="Biaya" />
+<!--                <item-->
+<!--                    android:id="@+id/nav_biaya"-->
+<!--                    android:icon="@drawable/ic_biaya"-->
+<!--                    android:title="Biaya" />-->
             </group>
         </menu>
     </item>
@@ -48,11 +48,11 @@
                     android:checkable="true"
                     android:icon="@drawable/ic_laporan_bulanan"
                     android:title="Laporan Penjualan Bulanan" />
-                <item
-                    android:id="@+id/nav_laporan_tahunan"
-                    android:checkable="true"
-                    android:icon="@drawable/ic_laporan_tahunan"
-                    android:title="Laporan Penjualan Tahunan" />
+<!--                <item-->
+<!--                    android:id="@+id/nav_laporan_tahunan"-->
+<!--                    android:checkable="true"-->
+<!--                    android:icon="@drawable/ic_laporan_tahunan"-->
+<!--                    android:title="Laporan Penjualan Tahunan" />-->
                 <item
                     android:id="@+id/nav_laporan_labarugi"
                     android:checkable="true"
@@ -82,11 +82,11 @@
                     android:checkable="true"
                     android:icon="@drawable/ic_data_user"
                     android:title="Data User" />
-                <item
-                    android:id="@+id/nav_pelanggan"
-                    android:checkable="true"
-                    android:icon="@drawable/ic_data_pelanggan"
-                    android:title="Data Pelanggan" />
+<!--                <item-->
+<!--                    android:id="@+id/nav_pelanggan"-->
+<!--                    android:checkable="true"-->
+<!--                    android:icon="@drawable/ic_data_pelanggan"-->
+<!--                    android:title="Data Pelanggan" />-->
             </group>
         </menu>
     </item>
