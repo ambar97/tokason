@@ -56,7 +56,7 @@ public class DetailBiayaActivity extends AppCompatActivity {
         }else{
             linearLayoutDetailTanggalBiaya.setVisibility(View.VISIBLE);
         }
-
+        
         /*TEXT VIEW*/
         txtJumlahBiaya = findViewById( R.id.txtDetailJumlahBiaya);
         txtTanggalBiaya = findViewById( R.id.txtDetailTanggalBiaya);

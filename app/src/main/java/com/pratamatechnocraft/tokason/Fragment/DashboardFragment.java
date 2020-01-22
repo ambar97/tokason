@@ -25,7 +25,7 @@ import java.util.zip.Inflater;
 
 public class DashboardFragment extends Fragment {
 
-    private CardView kliktransaksijual, kliktransaksibeli, klikbarang, klikkategori, klikuser, kliklapharian, kliklapbulanan, kliklaptahunan, kliklaplabarugi, klikbiaya;
+    private CardView kliktransaksijual, kliktransaksibeli, klikbarang, klikkategori, klikuser, kliklapharian, kliklapbulanan, kliklaptahunan, kliklaplabarugi, klikbiaya,klikprofile;
     NavigationView navigationView;
     SessionManager sessionManager;
     View view;
@@ -48,9 +48,22 @@ public class DashboardFragment extends Fragment {
             kliklapbulanan = view.findViewById(R.id.cardhomelapbulanan);
             kliklaptahunan = view.findViewById(R.id.cardhomelaptahunan);
             kliklaplabarugi = view.findViewById(R.id.cardhomelaplabarugi);
-            klikbiaya = view.findViewById(R.id.cardhomebiaya);
+            klikprofile = view.findViewById(R.id.cardhomeprofile);
+//            klikbiaya = view.findViewById(R.id.cardhomebiaya);
 
 
+            klikprofile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ProfileFragment profileFragment= new ProfileFragment();
+
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.screen_area, profileFragment )
+                            .addToBackStack(null)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit();
+                }
+            });
             kliktransaksijual.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -116,18 +129,18 @@ public class DashboardFragment extends Fragment {
                 }
             });
 
-            klikbiaya.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    TabLayoutFragmentBiaya tabLayoutFragmentBiaya= new TabLayoutFragmentBiaya();
-
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.screen_area, tabLayoutFragmentBiaya )
-                            .addToBackStack(null)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .commit();
-                }
-            } );
+//            klikbiaya.setOnClickListener( new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    TabLayoutFragmentBiaya tabLayoutFragmentBiaya= new TabLayoutFragmentBiaya();
+//
+//                    getFragmentManager().beginTransaction()
+//                            .replace(R.id.screen_area, tabLayoutFragmentBiaya )
+//                            .addToBackStack(null)
+//                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                            .commit();
+//                }
+//            } );
 
             kliklaplabarugi.setOnClickListener( new View.OnClickListener() {
                 @Override
@@ -168,18 +181,18 @@ public class DashboardFragment extends Fragment {
                 }
             } );
 
-            kliklaptahunan.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    LaporanFragment laporanFragment = new LaporanFragment(2);
-
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.screen_area, laporanFragment)
-                            .addToBackStack(null)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .commit();
-                }
-            } );
+//            kliklaptahunan.setOnClickListener( new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    LaporanFragment laporanFragment = new LaporanFragment(2);
+//
+//                    getFragmentManager().beginTransaction()
+//                            .replace(R.id.screen_area, laporanFragment)
+//                            .addToBackStack(null)
+//                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                            .commit();
+//                }
+//            } );
         }else{
             view = inflater.inflate( R.layout.fragment_dashboard_kasir, container, false);
             kliktransaksijual = view.findViewById(R.id.cardhometransaksipenjualan);

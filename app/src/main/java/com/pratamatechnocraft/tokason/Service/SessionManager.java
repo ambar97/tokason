@@ -88,6 +88,7 @@ public class SessionManager {
         user.put( KD_OUTLET, sharedPreferences.getString( KD_OUTLET, null ) );
         user.put( KD_USER, sharedPreferences.getString( KD_USER, null ) );
         user.put( LEVEL_USER, sharedPreferences.getString( LEVEL_USER, null ) );
+
         return user;
     }
 
