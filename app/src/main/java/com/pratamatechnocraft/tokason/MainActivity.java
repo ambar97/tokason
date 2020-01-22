@@ -19,6 +19,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
     private String baseUrl=baseUrlApiModel.getBaseURL();
-    private static final String API_URL_LOAD = "api/user?api=profile&kd_user=";
+    private static final String API_URL_LOAD = "api/user?api=dataprofile&kd_user=";
 
     private static final String TAG = MainActivity.class.getSimpleName();
     @Override
@@ -259,6 +260,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onResponse(String response) {
                     try {
+                        Log.d(TAG, "onResponse: "+response);
                         final JSONObject userprofile = new JSONObject(response);
                         namaUser.setText( userprofile.getString( "nama_depan" )+" "+userprofile.getString( "nama_belakang" ) );
                         urlGambar = baseUrl+String.valueOf( userprofile.getString( "foto" )  );
@@ -267,16 +269,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 .load(urlGambar)
                                 // LOAD GAMBAR AWAL SEBELUM GAMBAR UTAMA MUNCUL, BISA DARI LOKAL DAN INTERNET
                                 .into(fotoUser);
-                        if(userprofile.getString("status_user").equals("0")){
-
-                        }else if(userprofile.getString("status_user").equals("1")){
-
-                        }else if(userprofile.getString("status_user").equals("2")){
-
-                        }
+//                        if(userprofile.getString("status_user").equals("0")){
+//
+//                        }else if(userprofile.getString("status_user").equals("1")){
+//
+//                        }else if(userprofile.getString("status_user").equals("2")){
+//
+//                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(MainActivity.this, "Periksa koneksi & coba lagi1", Toast.LENGTH_SHORT).show();
+                        Log.e("TAG", "onResponse: ", e);
                     }
                 }
             },

@@ -1,14 +1,26 @@
 package com.pratamatechnocraft.tokason.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.cardview.widget.CardView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,24 +28,38 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.pratamatechnocraft.tokason.MainActivity;
+import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
 import com.pratamatechnocraft.tokason.Service.SessionManager;
 import com.pratamatechnocraft.tokason.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.zip.Inflater;
 
 public class DashboardFragment extends Fragment {
 
+    Context context;
     private CardView kliktransaksijual, kliktransaksibeli, klikbarang, klikkategori, klikuser, kliklapharian, kliklapbulanan, kliklaptahunan, kliklaplabarugi, klikbiaya,klikprofile;
     NavigationView navigationView;
     SessionManager sessionManager;
     View view;
-    TextView smsCountTxt;
+    TextView smsCountTxt, txtJatuhTempo, txtNamaOutlet;
     int pendingSMSCount = 0;
+    BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
+    private String baseUrl=baseUrlApiModel.getBaseURL();
+    private static final String API_URL_LOAD = "api/user?api=dataprofile&kd_user=";
+    SwipeRefreshLayout swipeRefreshLayout;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        context = getActivity();
         sessionManager = new SessionManager( getContext() );
         HashMap<String, String> user = sessionManager.getUserDetail();
         navigationView = getActivity().findViewById( R.id.nav_view );
@@ -49,8 +75,21 @@ public class DashboardFragment extends Fragment {
             kliklaptahunan = view.findViewById(R.id.cardhomelaptahunan);
             kliklaplabarugi = view.findViewById(R.id.cardhomelaplabarugi);
             klikprofile = view.findViewById(R.id.cardhomeprofile);
+            txtJatuhTempo = view.findViewById(R.id.tv_jatuh_tempo);
+            txtNamaOutlet = view.findViewById(R.id.tv_nama_outlet);
+            swipeRefreshLayout = view.findViewById(R.id.refreshProfile);
 //            klikbiaya = view.findViewById(R.id.cardhomebiaya);
 
+
+            final String kdUser = user.get(sessionManager.KD_USER);
+            loadProfile(kdUser);
+
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    loadProfile(kdUser);
+                }
+            });
 
             klikprofile.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -318,5 +357,36 @@ public class DashboardFragment extends Fragment {
                 }
             }
         }
+    }
+
+    private void loadProfile(String kd_user){
+        StringRequest stringRequest = new StringRequest( Request.Method.GET, baseUrl+API_URL_LOAD+kd_user,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            Log.d("TAG", "onResponse: "+response);
+                            final JSONObject userprofile = new JSONObject(response);
+                            txtJatuhTempo.setText(userprofile.getString("tgl_jatuh_tempo"));
+                            txtNamaOutlet.setText(userprofile.getString("nama_outlet"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Periksa koneksi & coba lagi1", Toast.LENGTH_SHORT).show();
+                            Log.e("TAG", "onResponse: ", e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, "Periksa koneksi & coba lagi", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        RequestQueue requestQueue = Volley.newRequestQueue( context );
+        requestQueue.add( stringRequest );
+
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

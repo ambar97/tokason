@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -324,13 +325,15 @@ public class ProfileFragment extends Fragment {
         requestQueue.add(stringRequest);
     }
 
-    private void loadProfile(String kdUser){
+    private void loadProfile(final String kdUser){
+        String API_URL = "api/user?api=dataprofile&kd_user="+kdUser;
         refreshProfile.setRefreshing(true);
-        StringRequest stringRequest = new StringRequest( Request.Method.GET, baseUrl+API_URL_LOAD+kdUser,
+        StringRequest stringRequest = new StringRequest( Request.Method.GET, baseUrl+API_URL,
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
+                        Log.d("TAG", "onResponse: "+response);
                         final JSONObject userprofile = new JSONObject(response);
                         txtNamaUserProfile.setText(  userprofile.getString( "nama_depan" )+" "+userprofile.getString( "nama_belakang" ));
                         textnama.setText( userprofile.getString( "nama_depan" )+" "+userprofile.getString( "nama_belakang" ) );
@@ -341,7 +344,7 @@ public class ProfileFragment extends Fragment {
                         }else if(Integer.parseInt( userprofile.getString( "level_user" ) )==1){
                             txtLevelUserProfile.setText("Kasir");
                         }
-                        textnotelp.setText( userprofile.getString( "no_telp" ) );
+                        textnotelp.setText( userprofile.getString( "telephone" ) );
                         textalamat.setText(  userprofile.getString( "alamat" )  );
                         urlGambarProfile = baseUrl+String.valueOf( userprofile.getString( "foto" )  );
                         profile_image.setOnClickListener( new View.OnClickListener() {
@@ -383,10 +386,11 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(getContext(), "Periksa koneksi & coba lagi1", Toast.LENGTH_SHORT).show();
+                    Log.d("errort", "onErrorResponse: "+error);;
                     refreshProfile.setRefreshing( false );
                 }
             }
-        );
+        ) ;
 
         RequestQueue requestQueue = Volley.newRequestQueue( getContext() );
         requestQueue.add( stringRequest );
