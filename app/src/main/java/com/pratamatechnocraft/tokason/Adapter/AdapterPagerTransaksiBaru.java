@@ -153,32 +153,32 @@ public class AdapterPagerTransaksiBaru extends PagerAdapter {
         }
 
         if (position==pertama){
-            dbDataSourceKeranjang.close();
-            dbDataSourceKeranjang.open();
-            ModelPelangganPilih modelPelangganPilih;
-            modelPelangganPilihs = dbDataSourceKeranjang.getAllModelPelangganPilih();
-            if (modelPelangganPilihs.size()!=0){
-                modelPelangganPilih = modelPelangganPilihs.get(0);
-                Date date = null;
-                try {
-                    date = new SimpleDateFormat("yyyy-MM-dd").parse(modelPelangganPilih.getTanggalTerdaftarPelanggan());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                String formatedDate = new SimpleDateFormat("yyyyMMdd").format(date);
-                txtKodePelanggan.setText("#PLG"+formatedDate+modelPelangganPilih.getKdPelanggan());
-                txtKodePelangganHidden.setText(modelPelangganPilih.getKdPelanggan());
-                txtNamaPelangganTransaksi.setText(modelPelangganPilih.getNamaPelanggan());
-                txtNotelpPelangganTransaksi.setText(modelPelangganPilih.getNoTelpPelanggan());
-                txtAlamatPelangganTransaksi.setText(modelPelangganPilih.getAlamatPelanggan());
-            }
-            buttonPilihPelanggan.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent( context, PelangganTransaksiActivity.class);
-                    context.startActivity(intent);
-                }
-            });
+//            dbDataSourceKeranjang.close();
+//            dbDataSourceKeranjang.open();
+//            ModelPelangganPilih modelPelangganPilih;
+//            modelPelangganPilihs = dbDataSourceKeranjang.getAllModelPelangganPilih();
+//            if (modelPelangganPilihs.size()!=0){
+//                modelPelangganPilih = modelPelangganPilihs.get(0);
+//                Date date = null;
+//                try {
+//                    date = new SimpleDateFormat("yyyy-MM-dd").parse(modelPelangganPilih.getTanggalTerdaftarPelanggan());
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+//                String formatedDate = new SimpleDateFormat("yyyyMMdd").format(date);
+//                txtKodePelanggan.setText("#PLG"+formatedDate+modelPelangganPilih.getKdPelanggan());
+//                txtKodePelangganHidden.setText(modelPelangganPilih.getKdPelanggan());
+//                txtNamaPelangganTransaksi.setText(modelPelangganPilih.getNamaPelanggan());
+//                txtNotelpPelangganTransaksi.setText(modelPelangganPilih.getNoTelpPelanggan());
+//                txtAlamatPelangganTransaksi.setText(modelPelangganPilih.getAlamatPelanggan());
+//            }
+//            buttonPilihPelanggan.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent( context, PelangganTransaksiActivity.class);
+//                    context.startActivity(intent);
+//                }
+//            });
         }else if (position==kedua){
             recyclerViewKeranjang.setHasFixedSize(true);
             recyclerViewKeranjang.setLayoutManager(new LinearLayoutManager(context));
@@ -196,7 +196,7 @@ public class AdapterPagerTransaksiBaru extends PagerAdapter {
                 public void onClick(View view) {
                     Intent intent = new Intent( context, BarangTransaksiActivity.class);
                     if (type==0){
-                        intent.putExtra( "type", "0" );
+                        intent.putExtra("type", "0" );
                     }else{
                         intent.putExtra( "type", "1" );
                     }
@@ -218,7 +218,7 @@ public class AdapterPagerTransaksiBaru extends PagerAdapter {
                 }
             });
         }else if(position==ketiga){
-            final String[] kdPelanggang = new String[1];
+//            final String[] kdPelanggang = new String[1];
             totalHarga=0;
             jmlItem=0;
             dbDataSourceKeranjang.close();
@@ -317,15 +317,15 @@ public class AdapterPagerTransaksiBaru extends PagerAdapter {
                         ModelPelangganPilih modelPelangganPilih;
                         modelPelangganPilihs =dbDataSourceKeranjang.getAllModelPelangganPilih();
                         modelPelangganPilih = modelPelangganPilihs.get(0);
-                        kdPelanggang[0] =modelPelangganPilih.getKdPelanggan();
+//                        kdPelanggang[0] =modelPelangganPilih.getKdPelanggan();
                     }else{
-                        kdPelanggang[0] = "";
+//                        kdPelanggang[0] = "";
                     }
 
                     try {
                         prosesKeDB(
                                 user.get( SessionManager.KD_USER),
-                                kdPelanggang[0],
+                                "0",
                                 String.valueOf( jmlItem ),
                                 diskonTxt,
                                 pajakTxt,
@@ -376,14 +376,14 @@ public class AdapterPagerTransaksiBaru extends PagerAdapter {
                                     ModelPelangganPilih modelPelangganPilih;
                                     modelPelangganPilihs =dbDataSourceKeranjang.getAllModelPelangganPilih();
                                     modelPelangganPilih = modelPelangganPilihs.get(0);
-                                    kdPelanggang[0] =modelPelangganPilih.getKdPelanggan();
+//                                    kdPelanggang[0] =modelPelangganPilih.getKdPelanggan();
                                 }else{
-                                    kdPelanggang[0] = "";
+//                                    kdPelanggang[0] = "";
                                 }
                                 try {
                                     prosesKeDB(
                                             user.get( SessionManager.KD_USER),
-                                            kdPelanggang[0],
+                                            "0",
                                             String.valueOf(jmlItem),
                                             diskonTxt,
                                             pajakTxt,

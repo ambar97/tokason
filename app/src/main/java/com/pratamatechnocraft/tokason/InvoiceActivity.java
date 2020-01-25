@@ -332,7 +332,8 @@ public class InvoiceActivity extends AppCompatActivity {
                             adapterRecycleViewDetailTransaksi.notifyDataSetChanged();
                         }
 
-                        txtNamaPelangganTransaksiDetail.setText(invoicedetail.getString( "nama_pelanggan" ));
+//                        txtNamaPelangganTransaksiDetail.setText(invoicedetail.getString( "nama_pelanggan" ));
+                        txtNamaPelangganTransaksiDetail.setText("-");
 
                         txtNamaKasirDetailTransaksi.setText( invoicedetail.getString( "nama_user" ) );
 

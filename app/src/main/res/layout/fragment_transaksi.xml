@@ -16,7 +16,9 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:src="@drawable/ic_add_white_24dp"
-        app:elevation="@dimen/cardview_default_elevation" />
+        app:elevation="@dimen/cardview_default_elevation"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +69,8 @@
                 android:textAlignment="textEnd"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="end" />
         </LinearLayout>
 
     </LinearLayout>

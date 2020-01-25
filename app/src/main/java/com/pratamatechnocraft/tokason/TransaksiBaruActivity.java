@@ -81,7 +81,7 @@ public class TransaksiBaruActivity extends AppCompatActivity {
 
         mViewPager = findViewById( R.id.viewPager );
         if (intent.getStringExtra( "type" ).equals( "0" )){
-            layouts = new int[]{R.layout.fragment_transaksi_baru_satu, R.layout.fragment_transaksi_baru_dua, R.layout.fragment_transaksi_baru_tiga};
+            layouts = new int[]{R.layout.fragment_transaksi_baru_dua, R.layout.fragment_transaksi_baru_tiga};
             if (intent.getStringExtra( "form" ).equals( "0" )) {
                 this.setTitle("Transaksi Penjualan Baru");
                 adapterPagerTransaksiBaru = new AdapterPagerTransaksiBaru(layouts, this, 0 , 0, null, "0","0",null);
@@ -150,14 +150,6 @@ public class TransaksiBaruActivity extends AppCompatActivity {
                     if(i==0) {
                         btnKembali.setVisibility( View.GONE );
                         btnLanjut.setVisibility( View.VISIBLE );
-                    }else if (i==1){
-                        if (dbDataSourceKeranjang.totalPelangganPilih()==false){
-                            alert("Peringatan !!","Pilih Pelanggan Terlebih Dahulu !!!");
-                            mViewPager.setCurrentItem( 0 );
-                        }else{
-                            btnKembali.setVisibility( View.VISIBLE );
-                            btnLanjut.setVisibility( View.VISIBLE );
-                        }
                     }else if(i==2){
                         if (dbDataSourceKeranjang.totalKeranjang()==false){
                             alert("Peringatan !!","Barang kosong");

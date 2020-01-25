@@ -16,4 +16,11 @@
     <string name="title_tab_start_date">Dari</string>
     <string name="ttile_tab_end_date">Sampai</string>
     <string name="but_done">Pilih</string>
+
+    <string-array name="survey_referral">
+        <item>Media Sosial</item>
+        <item>Surat Kabar</item>
+        <item>Orang lain</item>
+    </string-array>
+
 </resources>
