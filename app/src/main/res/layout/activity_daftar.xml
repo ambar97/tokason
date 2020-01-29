@@ -174,14 +174,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:clickable="true"
+                    android:id="@+id/syarat"
                     android:text=" Saya telah membaca dan menyetujui SYARAT &amp; KETENTUAN" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:text=" "
-                    android:layout_marginBottom="20dp"/>
             </LinearLayout>
 
             <Button
