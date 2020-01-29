@@ -152,15 +152,12 @@ public class LoginActivity extends AppCompatActivity {
                     } else if(success.equals("4")) {
                         JSONObject data_user = jsonObject.getJSONObject("data_user");
                         phoneNumber = String.valueOf(data_user.getString("no_telp"));
-
-                        Log.d("nomer", phoneNumber);
-//                        Intent intent = new Intent(LoginActivity.this, VerifikasiActivity.class);
-//                        startActivity(intent);
                         sendVerificationCode(phoneNumber);
                     } else if(success.equals("5")) {
-                        // TODO: 1/18/2020 AKUN BELUM BAYAR 
+                        Intent intent = new Intent(LoginActivity.this, SubscriptionActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
