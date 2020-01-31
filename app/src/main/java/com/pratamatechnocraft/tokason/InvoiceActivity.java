@@ -100,6 +100,8 @@ public class InvoiceActivity extends AppCompatActivity {
     SessionManager sessionManager;
     HashMap<String, String> printer;
 
+    String namaOutlet, alamatOutlet, noTelp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -277,7 +279,11 @@ public class InvoiceActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     try {
+                        Log.d("INVOICE ", "onResponse: "+response);
                         final JSONObject invoicedetail = new JSONObject(response);
+                        namaOutlet = invoicedetail.getString("nama_outlet");
+                        alamatOutlet = invoicedetail.getString("alamat_outlet");
+                        noTelp = invoicedetail.getString("no_telp");
                         pajak=invoicedetail.getString("pajak");
                         diskon=invoicedetail.getString("diskon");
                         if (invoicedetail.getString( "status" ).equals( "0" )){
@@ -626,7 +632,7 @@ public class InvoiceActivity extends AppCompatActivity {
                     @Override
                     public void onConnected() {
                         DecimalFormat formatter = new DecimalFormat("#,###,###");
-                        mPrinter.printHead();
+                        mPrinter.printHead(namaOutlet, alamatOutlet, noTelp);
                         mPrinter.printCustom(mPrinter.leftRightAlign("Tanggal", txtTanggalTransaksiDetail.getText().toString(),printer.get(sessionManager.UKURAN_KERTAS)), 0, 1);
                         mPrinter.printCustom(mPrinter.leftRightAlign("No Invoice", txtNoInvoiceDetailTransaksi.getText().toString(),printer.get(sessionManager.UKURAN_KERTAS)), 0, 1);
                         if(txtNoInvoiceDetailTransaksi.getText().toString().contains("#PL")){

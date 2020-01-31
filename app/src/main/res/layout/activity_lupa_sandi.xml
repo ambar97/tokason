@@ -41,7 +41,7 @@
                 android:id="@+id/editTextUsernameLupa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username / email / nomor telepon" />
+                android:hint="nomor telepon 81234567890" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
