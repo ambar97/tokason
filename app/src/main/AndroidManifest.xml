@@ -24,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PasswordBaruActivity"></activity>
+        <activity android:name=".SubscriptionActivity"/>
+        <activity android:name=".PasswordBaruActivity" />
         <activity android:name=".VerifikasiActivity" />
         <activity android:name=".SyaratKetentuanActivity" />
         <activity android:name=".DaftarActivity" />

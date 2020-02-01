@@ -32,133 +32,145 @@
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/namaDepanPemilik"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nama Depan "
-                    android:id="@+id/namaDepanPemilik"/>
+                    android:hint="Nama Depan " />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/namaBelakangPemilik"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nama Belakang"
-                    android:id="@+id/namaBelakangPemilik"/>
+                    android:hint="Nama Belakang" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
                     android:hint="E-mail"
-                    android:id="@+id/email"/>
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/NotelpPemilik"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="No Tep"
-                    android:inputType="phone"
-                    android:id="@+id/NotelpPemilik"/>
+                    android:layout_height="match_parent"
+                    android:hint="No telp 8123456789"
+                    android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/alamatLengkapPemilik"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Alamat Lengkap"
-                    android:id="@+id/alamatLengkapPemilik"/>
+                    android:hint="Alamat Lengkap" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Data login"
                 android:background="@color/fontBlackDisable"
-                android:paddingTop="10dp"
                 android:paddingLeft="5pt"
-                android:textColor="#fff"
-                android:paddingBottom="5pt"/>
+                android:paddingTop="10dp"
+                android:paddingBottom="5pt"
+                android:text="Data login"
+                android:textColor="#fff" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Username"
-                    android:id="@+id/username"/>
+                    android:hint="Username" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:inputType="textPassword"
-                    android:id="@+id/password"/>
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/fontBlackDisable"
+                android:paddingLeft="5pt"
+                android:paddingTop="10dp"
+                android:paddingBottom="5pt"
                 android:text="Detail Toko"
-                android:background="@color/fontBlackDisable"
-                android:paddingTop="10dp"
-                android:paddingLeft="5pt"
-                android:textColor="#fff"
-                android:paddingBottom="5pt"/>
+                android:textColor="#fff" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/NamaToko"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nama Toko"
-                    android:id="@+id/NamaToko"/>
+                    android:hint="Nama Toko" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/AlamatToko"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Alamat Toko"
-                    android:id="@+id/AlamatToko"/>
+                    android:hint="Alamat Toko" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kode Pendaftar"
                 android:background="@color/fontBlackDisable"
-                android:paddingTop="10dp"
                 android:paddingLeft="5pt"
-                android:textColor="#fff"
-                android:paddingBottom="5pt"/>
+                android:paddingTop="10dp"
+                android:paddingBottom="5pt"
+                android:text="Kode Pendaftar"
+                android:textColor="#fff" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Referral"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Referaal Code"
-                    android:id="@+id/Referral"/>
+                    android:hint="Referaal Code" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -176,15 +188,25 @@
                     android:clickable="true"
                     android:id="@+id/syarat"
                     android:text=" Saya telah membaca dan menyetujui SYARAT &amp; KETENTUAN" />
+<<<<<<< HEAD
+=======
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:clickable="true"
+                    android:text=" " />
+>>>>>>> fc575b4f8d79f5cc8a7039d83854fc75adcb5b4f
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnLanjutDaftar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/blue_600"
                 android:text="Lanjut"
-                android:textColor="#fff"
-                android:background="@color/blue_600"/>
+                android:textColor="#fff" />
 
         </LinearLayout>
     </ScrollView>

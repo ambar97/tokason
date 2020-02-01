@@ -124,11 +124,11 @@ public class BluetoothPrinter {
         void onFailed();
     }
 
-    public void printHead(){
-        printCustom("Kantin Hebat",2,1);
-        printCustom("Gedung TI,  Jl. Mastrip 164, Jember",0,1);
-        printCustom("Meyediakan makanan dan minuman ringan di area lingkungan jurusan TI",0,1);
-        printCustom("081556780810",0,1);
+    public void printHead(String nama, String alamat, String noTelp){
+        printCustom(nama,2,1);
+        printCustom(alamat,0,1);
+//        printCustom("Meyediakan makanan dan minuman ringan di area lingkungan jurusan TI",0,1);
+        printCustom(noTelp,0,1);
         printNewLine();
     }
 

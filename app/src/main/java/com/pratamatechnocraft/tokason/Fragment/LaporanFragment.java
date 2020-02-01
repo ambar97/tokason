@@ -134,7 +134,7 @@ public class LaporanFragment extends Fragment{
             LinearLayoutLapBulanan.setVisibility(View.GONE);
             LinearLayoutLapTahunan.setVisibility(View.GONE);
             LinearLayoutLapHarian.setVisibility(View.VISIBLE);
-            dateFormatter = new SimpleDateFormat("dd MMMM yyyy ", Locale.US);
+            dateFormatter = new SimpleDateFormat("dd-MMMM-yyyy", Locale.US);
             tanggalDari=dateFormatter.format(newCalendar.getTime());
             tanggalSampai=dateFormatter.format(newCalendar.getTime());
             txtTanggalHarian.setText(dateFormatter.format(newCalendar.getTime())+" - "+dateFormatter.format(newCalendar.getTime()));
@@ -151,7 +151,7 @@ public class LaporanFragment extends Fragment{
             LinearLayoutLapBulanan.setVisibility(View.VISIBLE);
             LinearLayoutLapTahunan.setVisibility(View.GONE);
             LinearLayoutLapHarian.setVisibility(View.GONE);
-            dateFormatter = new SimpleDateFormat("MMMM yyyy ", Locale.US);
+            dateFormatter = new SimpleDateFormat("MMMM-yyyy", Locale.US);
             txtBulan.setText(dateFormatter.format(newCalendar.getTime()));
 
             refreshLaporan.setOnRefreshListener( new SwipeRefreshLayout.OnRefreshListener() {

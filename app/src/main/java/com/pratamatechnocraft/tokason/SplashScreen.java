@@ -4,10 +4,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import com.pratamatechnocraft.tokason.Service.SessionManager;
@@ -22,39 +24,39 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        if(
-            ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA ) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-        ){
+        if (
+                ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                        ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                        ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                        ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+        ) {
             ActivityCompat.requestPermissions(this,
-                new String[]{
-                        Manifest.permission.CAMERA,
-                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                }, PERMISSION_CODE
+                    new String[]{
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    }, PERMISSION_CODE
             );
-        }else{
+        } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
 
-                    sessionManager = new SessionManager( SplashScreen.this );
-                    if (sessionManager.isLoggin()){
+                    sessionManager = new SessionManager(SplashScreen.this);
+                    if (sessionManager.isLoggin()) {
                         Intent i = new Intent(SplashScreen.this, MainActivity.class);
                         startActivity(i);
                         finish();
-                    }else{
-                        Intent home=new Intent(SplashScreen.this, LoginActivity.class);
+                    } else {
+                        Intent home = new Intent(SplashScreen.this, LoginActivity.class);
                         startActivity(home);
                         finish();
                     }
 
 
                 }
-            },2000);
+            }, 2000);
         }
     }
 
@@ -70,20 +72,20 @@ public class SplashScreen extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            sessionManager = new SessionManager( SplashScreen.this );
-                            if (sessionManager.isLoggin()){
+                            sessionManager = new SessionManager(SplashScreen.this);
+                            if (sessionManager.isLoggin()) {
                                 Intent i = new Intent(SplashScreen.this, MainActivity.class);
                                 startActivity(i);
                                 finish();
-                            }else{
-                                Intent home=new Intent(SplashScreen.this, LoginActivity.class);
+                            } else {
+                                Intent home = new Intent(SplashScreen.this, LoginActivity.class);
                                 startActivity(home);
                                 finish();
                             }
 
 
                         }
-                    },500);
+                    }, 500);
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
@@ -91,22 +93,21 @@ public class SplashScreen extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            sessionManager = new SessionManager( SplashScreen.this );
-                            if (sessionManager.isLoggin()){
+                            sessionManager = new SessionManager(SplashScreen.this);
+                            if (sessionManager.isLoggin()) {
                                 Intent i = new Intent(SplashScreen.this, MainActivity.class);
                                 startActivity(i);
                                 finish();
-                            }else{
-                                Intent home=new Intent(SplashScreen.this, LoginActivity.class);
+                            } else {
+                                Intent home = new Intent(SplashScreen.this, LoginActivity.class);
                                 startActivity(home);
                                 finish();
                             }
 
 
                         }
-                    },500);
+                    }, 500);
                 }
-                return;
             }
 
             // other 'case' lines to check for other

@@ -1,12 +1,8 @@
 package com.pratamatechnocraft.tokason;
 
 import android.content.Intent;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,19 +10,17 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
 import com.pratamatechnocraft.tokason.Service.Config;
 import com.pratamatechnocraft.tokason.Service.SessionManager;
@@ -95,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, DaftarActivity.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -126,41 +121,42 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
-                    if (success.equals("1")) {
-                        JSONObject data_user = jsonObject.getJSONObject("data_user");
-                        String kd_user = data_user.getString("kd_user").trim();
-                        String level_user = String.valueOf(data_user.getInt("level_user"));
-                        String kd_outlet = String.valueOf(data_user.getInt("kd_outlet"));
+                    switch (success) {
+                        case "1": {
+                            JSONObject data_user = jsonObject.getJSONObject("data_user");
+                            String kd_user = data_user.getString("kd_user").trim();
+                            String level_user = String.valueOf(data_user.getInt("level_user"));
+                            String kd_outlet = String.valueOf(data_user.getInt("kd_outlet"));
 
-                        sessionManager.createSession(kd_user, level_user, kd_outlet);
+                            sessionManager.createSession(kd_user, level_user, kd_outlet);
 
-                        Toast.makeText(LoginActivity.this, "Login Berhasil !", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(i);
-                        finish();
+                            Toast.makeText(LoginActivity.this, "Login Berhasil !", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(i);
+                            finish();
 
-                        loading.setVisibility(View.GONE);
-                        btnLogin.setVisibility(View.VISIBLE);
-                    } else if (success.equals("2")) {
-                        loading.setVisibility(View.GONE);
-                        btnLogin.setVisibility(View.VISIBLE);
-                        Toast.makeText(LoginActivity.this, "Password Tidak Valid !!", Toast.LENGTH_SHORT).show();
-                    } else if (success.equals("3")) {
-                        loading.setVisibility(View.GONE);
-                        btnLogin.setVisibility(View.VISIBLE);
-                        Toast.makeText(LoginActivity.this, "Username Tidak Valid !!", Toast.LENGTH_SHORT).show();
-                    } else if(success.equals("4")) {
-                        JSONObject data_user = jsonObject.getJSONObject("data_user");
-                        phoneNumber = String.valueOf(data_user.getString("no_telp"));
+                            loading.setVisibility(View.GONE);
+                            btnLogin.setVisibility(View.VISIBLE);
+                            break;
+                        }
+                        case "2":
+                            loading.setVisibility(View.GONE);
+                            btnLogin.setVisibility(View.VISIBLE);
+                            Toast.makeText(LoginActivity.this, "Password Tidak Valid !!", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "3":
+                            loading.setVisibility(View.GONE);
+                            btnLogin.setVisibility(View.VISIBLE);
+                            Toast.makeText(LoginActivity.this, "Username Tidak Valid !!", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "4": {
+                            JSONObject data_user = jsonObject.getJSONObject("data_user");
+                            phoneNumber = String.valueOf(data_user.getString("no_telp"));
+                            sendVerificationCode(phoneNumber);
+                            break;
+                        }
 
-                        Log.d("nomer", phoneNumber);
-//                        Intent intent = new Intent(LoginActivity.this, VerifikasiActivity.class);
-//                        startActivity(intent);
-                        sendVerificationCode(phoneNumber);
-                    } else if(success.equals("5")) {
-                        // TODO: 1/18/2020 AKUN BELUM BAYAR 
                     }
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -181,7 +177,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
         ) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("user", user);
                 params.put("pass", pass);
@@ -190,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Authorization", regId);
                 return headers;
@@ -201,10 +197,10 @@ public class LoginActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void sendVerificationCode(String phoneNumber){
+    private void sendVerificationCode(String phoneNumber) {
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+62"+phoneNumber,
+                "+62" + phoneNumber,
                 60,
                 TimeUnit.SECONDS,
                 this,
@@ -215,24 +211,24 @@ public class LoginActivity extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCall = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-            Log.d("LoginActivity", ""+ phoneAuthCredential);
+            Log.d("LoginActivity", "" + phoneAuthCredential);
 
 
         }
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Log.w("LoginActivity" , "Tidak Berhasil: "+ e);
+            Log.w("LoginActivity", "Tidak Berhasil: " + e);
 
         }
 
         @Override
         public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
-            Log.d("LoginActivity" , "Verification id : " + verificationId);
-            Intent intent = new Intent(LoginActivity.this , VerifikasiActivity.class);
-            intent.putExtra("verificationId" , verificationId);
-            intent.putExtra("username" , phoneNumber);
-            intent.putExtra("from" , "daftar");
+            Log.d("LoginActivity", "Verification id : " + verificationId);
+            Intent intent = new Intent(LoginActivity.this, VerifikasiActivity.class);
+            intent.putExtra("verificationId", verificationId);
+            intent.putExtra("username", phoneNumber);
+            intent.putExtra("from", "daftar");
             startActivity(intent);
             finish();
         }
