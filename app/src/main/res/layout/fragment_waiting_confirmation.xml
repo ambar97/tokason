@@ -5,14 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.WaitingConfirmationFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="5dp"
+        android:orientation="vertical"
         android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView20"
@@ -20,10 +17,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/waiting_subscription"
-            android:textSize="30sp"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
 
         <Button
             android:id="@+id/btn_refresh_subscription"
@@ -38,7 +40,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>
