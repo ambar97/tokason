@@ -331,6 +331,8 @@ public class TransaksiFragment extends Fragment{
                         koneksiDataTransaksi.setVisibility( View.GONE);
                         setUpRecycleView();
                     }catch (JSONException e){
+
+                        Log.e("ERR", "onErrorResponse: ", e);
                         e.printStackTrace();
                         refreshDataTransaksi.setRefreshing( false );
                         progressBarDataTransaksi.setVisibility( View.GONE );
@@ -345,6 +347,7 @@ public class TransaksiFragment extends Fragment{
             new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    Log.e("ERR", "onErrorResponse: ", error);
                     error.printStackTrace();
                     refreshDataTransaksi.setRefreshing( false );
                     progressBarDataTransaksi.setVisibility( View.GONE );

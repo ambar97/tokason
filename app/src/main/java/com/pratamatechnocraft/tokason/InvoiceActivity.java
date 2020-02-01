@@ -332,7 +332,8 @@ public class InvoiceActivity extends AppCompatActivity {
                             adapterRecycleViewDetailTransaksi.notifyDataSetChanged();
                         }
 
-                        txtNamaPelangganTransaksiDetail.setText(invoicedetail.getString( "nama_pelanggan" ));
+//                        txtNamaPelangganTransaksiDetail.setText(invoicedetail.getString( "nama_pelanggan" ));
+                        txtNamaPelangganTransaksiDetail.setText("-");
 
                         txtNamaKasirDetailTransaksi.setText( invoicedetail.getString( "nama_user" ) );
 
@@ -625,7 +626,12 @@ public class InvoiceActivity extends AppCompatActivity {
                     @Override
                     public void onConnected() {
                         DecimalFormat formatter = new DecimalFormat("#,###,###");
-                        mPrinter.printHead();
+//                        mPrinter.printHead();
+
+//                        mPrinter.printCustom("Kantin Hebat",2,1);
+//                        mPrinter.printCustom("Gedung TI,  Jl. Mastrip 164, Jember",0,1);
+//                        mPrinter.printCustom("081556780810",0,1);
+//                        
                         mPrinter.printCustom(mPrinter.leftRightAlign("Tanggal", txtTanggalTransaksiDetail.getText().toString(),printer.get(sessionManager.UKURAN_KERTAS)), 0, 1);
                         mPrinter.printCustom(mPrinter.leftRightAlign("No Invoice", txtNoInvoiceDetailTransaksi.getText().toString(),printer.get(sessionManager.UKURAN_KERTAS)), 0, 1);
                         if(txtNoInvoiceDetailTransaksi.getText().toString().contains("#PL")){

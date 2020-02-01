@@ -162,21 +162,21 @@ public class LaporanFragment extends Fragment{
                     loadLaporan(null,null,String.valueOf((selectedMonthV+1)),String.valueOf(selectedYearV),1);
                 }
             } );
-        }else{
-            LinearLayoutLapBulanan.setVisibility(View.GONE);
-            LinearLayoutLapTahunan.setVisibility(View.VISIBLE);
-            LinearLayoutLapHarian.setVisibility(View.GONE);
-            dateFormatter = new SimpleDateFormat("yyyy ", Locale.US);
-            txtTahun.setText(dateFormatter.format(newCalendar.getTime()));
-
-            refreshLaporan.setOnRefreshListener( new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    listItemBarangTerjuals.clear();
-                    adapterRecycleViewBarangTerjual.notifyDataSetChanged();
-                    loadLaporan(null,null,null,String.valueOf(selectedYearV),2);
-                }
-            } );
+//        }else{
+//            LinearLayoutLapBulanan.setVisibility(View.GONE);
+//            LinearLayoutLapTahunan.setVisibility(View.VISIBLE);
+//            LinearLayoutLapHarian.setVisibility(View.GONE);
+//            dateFormatter = new SimpleDateFormat("yyyy ", Locale.US);
+//            txtTahun.setText(dateFormatter.format(newCalendar.getTime()));
+//
+//            refreshLaporan.setOnRefreshListener( new SwipeRefreshLayout.OnRefreshListener() {
+//                @Override
+//                public void onRefresh() {
+//                    listItemBarangTerjuals.clear();
+//                    adapterRecycleViewBarangTerjual.notifyDataSetChanged();
+//                    loadLaporan(null,null,null,String.valueOf(selectedYearV),2);
+//                }
+//            } );
         }
 
         recycleViewBarangTerjual.setAdapter( adapterRecycleViewBarangTerjual );
@@ -197,10 +197,10 @@ public class LaporanFragment extends Fragment{
             navigationView.setCheckedItem(R.id.nav_laporan_bulanan);
             getActivity().setTitle("Laporan Bulanan");
             loadLaporan(null,null,String.valueOf((selectedMonthV+1)),String.valueOf(selectedYearV),1);
-        }else{
-            navigationView.setCheckedItem(R.id.nav_laporan_tahunan);
-            getActivity().setTitle("Laporan Tahunan");
-            loadLaporan(null,null,null,String.valueOf(selectedYearV),2);
+//        }else{
+//            navigationView.setCheckedItem(R.id.nav_laporan_tahunan);
+//            getActivity().setTitle("Laporan Tahunan");
+//            loadLaporan(null,null,null,String.valueOf(selectedYearV),2);
         }
     }
 
@@ -239,24 +239,24 @@ public class LaporanFragment extends Fragment{
                     .setTitle("Pilih Bulan : ")
                     .build()
                     .show();
-        }else {
-            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(getContext(), new MonthPickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(int selectedMonth, int selectedYear) {
-                    Calendar newDate = Calendar.getInstance();
-                    newDate.set(selectedYear, selectedMonth, Calendar.DAY_OF_YEAR);
-                    txtTahun.setText(dateFormatter.format(newDate.getTime()));
-                    selectedMonthV=selectedMonth;
-                    selectedYearV=selectedYear;
-                    loadLaporan(null,null,null,String.valueOf(selectedYear),2);
-                }
-            }, selectedYearV, selectedMonthV);
-
-            builder.showYearOnly()
-                    .setTitle("Pilih Tahun : ")
-                    .setYearRange(1990, 2030)
-                    .build()
-                    .show();
+//        }else {
+//            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(getContext(), new MonthPickerDialog.OnDateSetListener() {
+//                @Override
+//                public void onDateSet(int selectedMonth, int selectedYear) {
+//                    Calendar newDate = Calendar.getInstance();
+//                    newDate.set(selectedYear, selectedMonth, Calendar.DAY_OF_YEAR);
+//                    txtTahun.setText(dateFormatter.format(newDate.getTime()));
+//                    selectedMonthV=selectedMonth;
+//                    selectedYearV=selectedYear;
+//                    loadLaporan(null,null,null,String.valueOf(selectedYear),2);
+//                }
+//            }, selectedYearV, selectedMonthV);
+//
+//            builder.showYearOnly()
+//                    .setTitle("Pilih Tahun : ")
+//                    .setYearRange(1990, 2030)
+//                    .build()
+//                    .show();
         }
     }
 
@@ -313,8 +313,8 @@ public class LaporanFragment extends Fragment{
             namaDocumnent = "Laporan_Harian_Periode_"+txtTanggalHarian.getText();
         }else if(jenisLaporan==1){
             namaDocumnent ="Laporan_Bulanan_Periode_"+txtBulan.getText();
-        }else {
-            namaDocumnent ="Laporan_Tahunan_Periode_"+txtTahun.getText();
+//        }else {
+//            namaDocumnent ="Laporan_Tahunan_Periode_"+txtTahun.getText();
         }
 
         PrintDocumentAdapter printAdapter =
@@ -349,10 +349,10 @@ public class LaporanFragment extends Fragment{
         try {
             if (jenisLaporan==0){
                 file =  new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Laporan_Harian_Periode_"+txtTanggalHarian.getText()+"_"+System.currentTimeMillis()+".jpg");
-            }else if(jenisLaporan==1){
+            }else{
                 file =  new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Laporan_Bulanan_Periode_"+txtBulan.getText()+"_"+System.currentTimeMillis()+".jpg");
-            }else {
-                file =  new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Laporan_Tahunan_Periode_"+txtTahun.getText()+"_"+System.currentTimeMillis()+".jpg");
+//            }else {
+//                file =  new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Laporan_Tahunan_Periode_"+txtTahun.getText()+"_"+System.currentTimeMillis()+".jpg");
             }
             FileOutputStream out = new FileOutputStream(file);
             bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
@@ -378,14 +378,14 @@ public class LaporanFragment extends Fragment{
             API_URL="api/transaksi?api=laporan&lap=harian&dari="+dari+"&sampai="+sampai;
             myWebView.loadUrl(baseUrl+"print_laporan?lap=harian&export=1&dari="+dari+"&sampai="+sampai+"&kd_outlet="+user.get(SessionManager.KD_OUTLET));
             url=baseUrl+"print_laporan?lap=harian&export=0&dari="+dari+"&sampai="+sampai+"&kd_outlet="+user.get(SessionManager.KD_OUTLET);
-        }else if(jenisLaporan==1){
+        }else{
             API_URL="api/transaksi?api=laporan&lap=bulanan&bulan="+bulan+"&tahun="+tahun;
             myWebView.loadUrl(baseUrl+"print_laporan?lap=bulanan&export=1&bulan="+bulan+"&tahun="+tahun+"&kd_outlet="+user.get(SessionManager.KD_OUTLET));
             url=baseUrl+"print_laporan?lap=bulanan&export=0&bulan="+bulan+"&tahun="+tahun+"&kd_outlet="+user.get(SessionManager.KD_OUTLET);
-        }else{
-            API_URL="api/transaksi?api=laporan&lap=tahunan&tahun="+tahun;
-            myWebView.loadUrl(baseUrl+"print_laporan?lap=tahunan&export=1&tahun="+tahun+"&kd_outlet="+user.get(SessionManager.KD_OUTLET));
-            url=baseUrl+"print_laporan?lap=tahunan&export=0&tahun="+tahun+"&kd_outlet="+user.get(SessionManager.KD_OUTLET);
+//        }else{
+//            API_URL="api/transaksi?api=laporan&lap=tahunan&tahun="+tahun;
+//            myWebView.loadUrl(baseUrl+"print_laporan?lap=tahunan&export=1&tahun="+tahun+"&kd_outlet="+user.get(SessionManager.KD_OUTLET));
+//            url=baseUrl+"print_laporan?lap=tahunan&export=0&tahun="+tahun+"&kd_outlet="+user.get(SessionManager.KD_OUTLET);
         }
         StringRequest stringRequest = new StringRequest( Request.Method.GET, baseUrl+API_URL+"&kd_outlet="+user.get(SessionManager.KD_OUTLET),
                 new Response.Listener<String>() {
@@ -430,7 +430,7 @@ public class LaporanFragment extends Fragment{
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("ghghghghghgh", "onErrorResponse: "+error);
+
                         Toast.makeText(getContext(), "Periksa koneksi & coba lagi1", Toast.LENGTH_SHORT).show();
                         refreshLaporan.setRefreshing( false );
                     }
@@ -450,10 +450,10 @@ public class LaporanFragment extends Fragment{
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         if (jenisLaporan==0){
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Laporan_Harian_Periode_"+txtTanggalHarian.getText()+"_"+System.currentTimeMillis()+".xlsx");
-        }else if(jenisLaporan==1){
+        }else{
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Laporan_Bulanan_Periode_"+txtBulan.getText()+"_"+System.currentTimeMillis()+".xlsx");
-        }else {
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Laporan_Tahunan_Periode_"+txtTahun.getText()+"_"+System.currentTimeMillis()+".xlsx");
+//        }else {
+//            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Laporan_Tahunan_Periode_"+txtTahun.getText()+"_"+System.currentTimeMillis()+".xlsx");
         }
 
 

@@ -1,10 +1,13 @@
 package com.pratamatechnocraft.tokason.Fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,6 +30,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +42,9 @@ import com.pratamatechnocraft.tokason.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.zip.Inflater;
 
 public class DashboardFragment extends Fragment {
@@ -53,6 +59,7 @@ public class DashboardFragment extends Fragment {
     BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
     private String baseUrl=baseUrlApiModel.getBaseURL();
     private static final String API_URL_LOAD = "api/user?api=dataprofile&kd_user=";
+    private static final String API_URL = "api/user";
     SwipeRefreshLayout swipeRefreshLayout;
 
 
@@ -359,7 +366,7 @@ public class DashboardFragment extends Fragment {
         }
     }
 
-    private void loadProfile(String kd_user){
+    private void loadProfile(final String kd_user){
         StringRequest stringRequest = new StringRequest( Request.Method.GET, baseUrl+API_URL_LOAD+kd_user,
                 new Response.Listener<String>() {
                     @Override
@@ -369,6 +376,10 @@ public class DashboardFragment extends Fragment {
                             final JSONObject userprofile = new JSONObject(response);
                             txtJatuhTempo.setText(userprofile.getString("tgl_jatuh_tempo"));
                             txtNamaOutlet.setText(userprofile.getString("nama_outlet"));
+                            if (userprofile.getString("kode_referal").equals("")){
+                                checkReferral(kd_user);
+                                Log.d("A", "onResponse: DIALOG");
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(context, "Periksa koneksi & coba lagi1", Toast.LENGTH_SHORT).show();
@@ -389,4 +400,78 @@ public class DashboardFragment extends Fragment {
 
         swipeRefreshLayout.setRefreshing(false);
     }
+
+    public void checkReferral(final String kd_user){
+        final ArrayList arrayList = new ArrayList();
+        final String string="";
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Dari mana Anda tahu aplikasi ini?");
+        builder
+                .setSingleChoiceItems(R.array.survey_referral, 0, null)
+                .setPositiveButton("Kirim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ListView lw = ((AlertDialog)dialogInterface).getListView();
+                        Object checkedItem = lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                        String kd;
+                        if (checkedItem.equals("Media Sosial")){
+                            kd = "1";
+                        }else if(checkedItem.equals("Surat Kabar")) {
+                            kd = "2";
+                        } else {
+                            kd = "3";
+                        }
+                        kirimReferal(kd, kd_user);
+                    }
+                })
+                .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+        builder.create().show();
+    }
+
+    void kirimReferal(final String kd, final String kd_user) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl+API_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Log.d("KIRIMREFERAL", "onResponse: " + response);
+                    JSONObject jsonObject = new JSONObject(response);
+                    String kode = jsonObject.getString("kode");
+                    String pesan = jsonObject.getString("pesan");
+                    if (kode.equals("1")) {
+                        Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show();
+                    } else if (kode.equals("2")) {
+                        Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, "Periksa koneksi & coba lagi1", Toast.LENGTH_SHORT).show();
+                    Log.e("TAG", "onResponse: ", e);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "Periksa koneksi & coba lagi1", Toast.LENGTH_SHORT).show();
+                Log.e("TAG", "onResponse: ", error);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user", kd_user);
+                params.put("kode_referal", kd);
+                params.put("api", "updatereferal");
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+    }
+
 }
