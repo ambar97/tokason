@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -100,9 +101,10 @@ public class SubscriptionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String fotoBukti = txtBukti.getText().toString().trim();
-                Log.d("FAFASFA", "onClick: "+fotoBukti);
-                if (fotoBukti.isEmpty()) {
+                if (!fotoBukti.isEmpty()) {
                     uploadBukti(kd_user, fotoBukti);
+                } else {
+                    Toast.makeText(context, "foto tidak boleh kosong", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -179,14 +181,23 @@ public class SubscriptionFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 try {
+                    Log.d("GGGGGG", "onResponse: "+response);
                     JSONObject jsonObject = new JSONObject(response);
                     String kode = jsonObject.getString("kode");
-                    String msg = jsonObject.getString("msg");
+                    String msg = jsonObject.getString("pesan");
                     if (kode.equals("1")) {
+                        WaitingConfirmationFragment waitingConfirmationFragment = new WaitingConfirmationFragment();
+
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.subscription_container, waitingConfirmationFragment )
+                                .addToBackStack(null)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .commit();
+
                         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(context, LoginActivity.class);
-                        startActivity(intent);
-                        getActivity().finish();
+//                        Intent intent = new Intent(context, LoginActivity.class);
+//                        startActivity(intent);
+//                        getActivity().finish();
                     } else {
                         Toast.makeText(context, msg , Toast.LENGTH_SHORT).show();
                     }
@@ -207,6 +218,7 @@ public class SubscriptionFragment extends Fragment {
                 Map<String, String> params = new HashMap<>();
                 params.put("kd_user", id_user);
                 params.put("foto", foto);
+                params.put("api", "subscription");
                 return params;
             }
         };
