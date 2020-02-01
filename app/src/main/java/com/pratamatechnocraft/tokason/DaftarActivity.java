@@ -1,6 +1,5 @@
 package com.pratamatechnocraft.tokason;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;

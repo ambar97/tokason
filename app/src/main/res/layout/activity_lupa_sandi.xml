@@ -28,7 +28,7 @@
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Masukkan username / email / nomor telepon anda dibawah ini"
+            android:text="nomor telepon anda dibawah ini"
             android:textColor="@color/ColorPrimaryText" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -41,7 +41,8 @@
                 android:id="@+id/editTextUsernameLupa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="nomor telepon 81234567890" />
+                android:hint="nomor telepon 81234567890"
+                android:inputType="phone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

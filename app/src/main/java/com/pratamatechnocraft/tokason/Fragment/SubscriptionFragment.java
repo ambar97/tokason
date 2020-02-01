@@ -49,7 +49,7 @@ public class SubscriptionFragment extends Fragment {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    private TextView txtBukti;
+    private TextView txtBukti, infoRekening;
     private Bitmap bitmap;
     private BottomSheetDialog bottomSheetDialog;
     private Button btnUpload, galeri, kamera, btnPilihFoto;
@@ -89,6 +89,11 @@ public class SubscriptionFragment extends Fragment {
         imgBukti = view.findViewById(R.id.img_bukti);
         txtBukti = view.findViewById(R.id.txt_bukti);
         btnPilihFoto = view.findViewById(R.id.pilih_foto);
+        infoRekening = view.findViewById(R.id.info_rekening);
+        int i = 150000+Integer.parseInt(kd_user);
+        String string = infoRekening.getText().toString()+ i;
+        
+        infoRekening.setText(string);
 
         btnPilihFoto.setOnClickListener(new View.OnClickListener() {
             @Override

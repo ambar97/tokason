@@ -59,7 +59,7 @@ public class LupaSandiActivity extends AppCompatActivity {
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+62"+phoneNumber,
-                60,
+                120,
                 TimeUnit.SECONDS,
                 this,
                 mCall

@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
 
 import org.json.JSONException;
@@ -38,14 +39,21 @@ public class PasswordBaruActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_baru);
+
         Toolbar toolbar = findViewById(R.id.toolbar_lupasandi);
         setSupportActionBar(toolbar);
-        setTitle("Password Baru");
+        this.setTitle("Password Baru");
+        toolbar.setSubtitleTextColor(ContextCompat.getColor(this, R.color.colorIcons));
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.colorIcons), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent intent = getIntent();
         final String no_telp = intent.getStringExtra("no_telp");
-        passbaru = findViewById(R.id.inputLayoutPasswordBaru);
-        barulagi = findViewById(R.id.inputLayoutPasswordBaruLagi);
-        finish = findViewById(R.id.buttonSimpanUbahPass);
+        passbaru = findViewById(R.id.inputPasswordBarus);
+        barulagi = findViewById(R.id.inputPasswordBaruLagis);
+        finish = findViewById(R.id.buttonSimpanUbahPasss);
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +62,7 @@ public class PasswordBaruActivity extends AppCompatActivity {
                 p2 = barulagi.getText().toString();
                 if (!p1.equals(p2)){
                     Toast.makeText(PasswordBaruActivity.this,"Password Harus Sama",Toast.LENGTH_SHORT).show();
+                } else {
                     ubahPassword(no_telp,p1);
                 }
             }

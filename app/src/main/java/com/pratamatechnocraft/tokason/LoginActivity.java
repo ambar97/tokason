@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, LupaSandiActivity.class);
                 startActivity(i);
+                finish();
             }
         });
     }

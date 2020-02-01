@@ -23,6 +23,6 @@
         <item>Orang lain</item>
     </string-array>
 
-    <string name="info_rekening">Silakan Bayar ke rekening \n<b>#######</b>\n atas nama\n ????????\nsebesar Rp 150.000</string>
+    <string name="info_rekening">Silakan Bayar ke rekening \n<b>#######</b>\n atas nama\n ????????\nsebesar Rp </string>
     <string name="waiting_subscription">Tokason sedang melakukan verifikasi pembayaran Anda\n Mohon menunggu ...</string>
 </resources>

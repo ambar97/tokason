@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,13 +40,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VerifikasiActivity extends AppCompatActivity {
-    String verificationId, noTelp;
+    String verificationId;
     FirebaseAuth mAuth;
     Intent intent;
     Button btnVerify;
     EditText txtOtp;
     String otp, from, username;
     SessionManager sessionManager;
+    TextView txtInfoTelp;
     BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
     private String baseUrl = baseUrlApiModel.getBaseURL();
     private static String URL_Daftar = "api/user";
@@ -57,6 +59,8 @@ public class VerifikasiActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         btnVerify = findViewById(R.id.btnKirimVerifikasi);
         txtOtp = findViewById(R.id.editTextKodeVerifikasi);
+        txtInfoTelp = findViewById(R.id.txt_info_telp);
+        String string = txtInfoTelp.getText().toString();
 
         Toolbar toolbar = findViewById(R.id.toolbar_verifikasi);
         setSupportActionBar(toolbar);
@@ -72,6 +76,7 @@ public class VerifikasiActivity extends AppCompatActivity {
         verificationId = intent.getStringExtra("verificationId");
         from = intent.getStringExtra("from");
         username = intent.getStringExtra("username");
+        txtInfoTelp.setText(string+username);
 
         btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,9 +107,10 @@ public class VerifikasiActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             if (from.equals("daftar")) {
+                                Log.d("DDADA", "onComplete: "+from);
                                 changeStatusUser(username);
-                            } else {
-
+                            } else if (from.equals("lupa")) {
+                                Log.d("elseif", "onComplete: "+from);
                                 Intent mintent = new Intent(VerifikasiActivity.this, PasswordBaruActivity.class);
                                 mintent.putExtra("no_telp",username);
                                 startActivity(mintent);
@@ -135,7 +141,7 @@ public class VerifikasiActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
                     if (success.equals("1")) {
-                        Toast.makeText(VerifikasiActivity.this, "username: "+username, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(VerifikasiActivity.this, "username: "+username, Toast.LENGTH_SHORT).show();
                         JSONObject data_user = jsonObject.getJSONObject("data_user");
                         String kd_user = data_user.getString("kd_user").trim();
                         String level_user = String.valueOf(data_user.getInt("level_user"));
