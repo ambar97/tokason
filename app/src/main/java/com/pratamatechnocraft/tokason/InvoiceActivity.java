@@ -632,7 +632,7 @@ public class InvoiceActivity extends AppCompatActivity {
                     @Override
                     public void onConnected() {
                         DecimalFormat formatter = new DecimalFormat("#,###,###");
-                        
+
                         mPrinter.printHead(namaOutlet, alamatOutlet, noTelp);
                         mPrinter.printCustom(mPrinter.leftRightAlign("Tanggal", txtTanggalTransaksiDetail.getText().toString(),printer.get(sessionManager.UKURAN_KERTAS)), 0, 1);
                         mPrinter.printCustom(mPrinter.leftRightAlign("No Invoice", txtNoInvoiceDetailTransaksi.getText().toString(),printer.get(sessionManager.UKURAN_KERTAS)), 0, 1);
