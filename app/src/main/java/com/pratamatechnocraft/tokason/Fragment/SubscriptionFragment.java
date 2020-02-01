@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -99,6 +100,7 @@ public class SubscriptionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String fotoBukti = txtBukti.getText().toString().trim();
+                Log.d(TAG, "onClick: "+fotoBukti);
                 if (fotoBukti.isEmpty()) {
                     uploadBukti(kd_user, fotoBukti);
                 }
