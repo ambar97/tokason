@@ -100,7 +100,7 @@ public class SubscriptionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String fotoBukti = txtBukti.getText().toString().trim();
-                Log.d(TAG, "onClick: "+fotoBukti);
+                Log.d("FAFASFA", "onClick: "+fotoBukti);
                 if (fotoBukti.isEmpty()) {
                     uploadBukti(kd_user, fotoBukti);
                 }

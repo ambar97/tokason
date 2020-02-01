@@ -430,7 +430,7 @@ public class LaporanFragment extends Fragment{
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("ERRORLAPORAN", "onErrorResponse: ", error);
+
                         Toast.makeText(getContext(), "Periksa koneksi & coba lagi1", Toast.LENGTH_SHORT).show();
                         refreshLaporan.setRefreshing( false );
                     }
