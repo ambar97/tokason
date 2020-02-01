@@ -205,9 +205,9 @@ public class DaftarActivity extends AppCompatActivity {
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+62"+phoneNumber,
-                60,
+                120,
                 TimeUnit.SECONDS,
-                this,
+                DaftarActivity.this,
                 mCall
         );
     }

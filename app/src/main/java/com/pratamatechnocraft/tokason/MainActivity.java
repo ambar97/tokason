@@ -268,13 +268,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             Log.d(TAG, "onResponse: " + response);
                             final JSONObject userprofile = new JSONObject(response);
                             String status = userprofile.getString("status");
-                            if (status.equals("5")) {
-                                Intent intent = new Intent(MainActivity.this, SubscriptionFragment.class);
+                            if (status.equals("2")) {
+                                Intent intent = new Intent(MainActivity.this, SubscriptionActivity.class);
                                 intent.putExtra(SubscriptionActivity.EXTRA_SUBSCRIPTION, "belumbayar");
                                 startActivity(intent);
                                 finish();
-                            } else if (status.equals("6")) {
-                                Intent intent = new Intent(MainActivity.this, SubscriptionFragment.class);
+                            } else if (status.equals("3")) {
+                                Intent intent = new Intent(MainActivity.this, SubscriptionActivity.class);
                                 intent.putExtra(SubscriptionActivity.EXTRA_SUBSCRIPTION, "konfirmasibayar");
                                 startActivity(intent);
                                 finish();

@@ -54,7 +54,7 @@ public class VerifikasiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verifikasi);
-
+        sessionManager = new SessionManager(this);
         btnVerify = findViewById(R.id.btnKirimVerifikasi);
         txtOtp = findViewById(R.id.editTextKodeVerifikasi);
 
@@ -188,5 +188,12 @@ public class VerifikasiActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(VerifikasiActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }

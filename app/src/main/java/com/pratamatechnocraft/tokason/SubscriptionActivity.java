@@ -41,11 +41,11 @@ public class SubscriptionActivity extends AppCompatActivity {
 
             if (statusBayar.equals("belumbayar")) {
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, new SubscriptionFragment())
+                        .replace(R.id.subscription_container, new SubscriptionFragment())
                         .commitNow();
             } else {
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, new WaitingConfirmationFragment())
+                        .replace(R.id.subscription_container, new WaitingConfirmationFragment())
                         .commitNow();
             }
 
