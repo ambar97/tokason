@@ -5,14 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -24,7 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,7 +29,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.pratamatechnocraft.tokason.LoginActivity;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
 import com.pratamatechnocraft.tokason.R;
 import com.pratamatechnocraft.tokason.Service.SessionManager;
@@ -42,7 +38,10 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class SubscriptionFragment extends Fragment {
@@ -90,9 +89,13 @@ public class SubscriptionFragment extends Fragment {
         txtBukti = view.findViewById(R.id.txt_bukti);
         btnPilihFoto = view.findViewById(R.id.pilih_foto);
         infoRekening = view.findViewById(R.id.info_rekening);
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+//        detailHarga.setText(formatRupiah.format((double)hargarumah));
         int i = 150000+Integer.parseInt(kd_user);
-        String string = infoRekening.getText().toString()+ i;
-        
+        String harga = formatRupiah.format((double)i);
+        String string = infoRekening.getText().toString()+ harga;
+
         infoRekening.setText(string);
 
         btnPilihFoto.setOnClickListener(new View.OnClickListener() {

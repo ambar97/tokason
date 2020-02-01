@@ -23,6 +23,6 @@
         <item>Orang lain</item>
     </string-array>
 
-    <string name="info_rekening">Silakan Bayar ke rekening \n<b>#######</b>\n atas nama\n ????????\nsebesar Rp </string>
+    <string name="info_rekening">Silakan Bayar ke rekening BNI \n<b>0902488662</b>\n atas nama\n Alifiah Wahyu Widya\nsebesar  </string>
     <string name="waiting_subscription">Tokason sedang melakukan verifikasi pembayaran Anda\n Mohon menunggu ...</string>
 </resources>
