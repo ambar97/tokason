@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +40,7 @@ public class DaftarActivity extends AppCompatActivity {
     EditText txtNamaDepan, txtNamaBelakang, txtNoTelepon, txtAlamat, txtNamaToko, txtAlamatToko,
             txtRefferalCode, txtUsername, txtPassword, txtEmail;
     CheckBox checkBoxAgrrement;
+    TextView textView;
     Button btnDaftar;
     String namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko, referralCode, username, password, email;
     BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
@@ -49,7 +51,7 @@ public class DaftarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
-
+        textView = findViewById(R.id.syarat);
         txtUsername = findViewById(R.id.username);
         txtPassword = findViewById(R.id.password);
         txtEmail = findViewById(R.id.email);
@@ -63,6 +65,13 @@ public class DaftarActivity extends AppCompatActivity {
         checkBoxAgrrement = findViewById(R.id.checkBox);
         btnDaftar = findViewById(R.id.btnLanjutDaftar);
 
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DaftarActivity.this,SyaratKetentuanActivity.class);
+                startActivity(intent);
+            }
+        });
         Toolbar toolbar = findViewById(R.id.toolbar_daftar);
         setSupportActionBar(toolbar);
         this.setTitle("Daftar Baru");
