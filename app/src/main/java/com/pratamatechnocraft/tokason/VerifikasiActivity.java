@@ -104,8 +104,10 @@ public class VerifikasiActivity extends AppCompatActivity {
                             if (from.equals("daftar")) {
                                 changeStatusUser(username);
                             } else {
-                                Intent intent = new Intent(VerifikasiActivity.this, PasswordBaruActivity.class);
-                                startActivity(intent);
+
+                                Intent mintent = new Intent(VerifikasiActivity.this, PasswordBaruActivity.class);
+                                mintent.putExtra("no_telp",username);
+                                startActivity(mintent);
                                 finish();
                             }
                         } else {
