@@ -105,7 +105,7 @@ public class VerifikasiActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-
+                            mAuth.getCurrentUser().delete();
                             if (from.equals("daftar")) {
                                 Log.d("DDADA", "onComplete: "+from);
                                 changeStatusUser(username);
