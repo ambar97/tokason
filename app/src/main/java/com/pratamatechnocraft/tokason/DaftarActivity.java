@@ -115,9 +115,9 @@ public class DaftarActivity extends AppCompatActivity {
                 } else if (!checkBoxAgrrement.isChecked()) {
                     checkBoxAgrrement.setError("Anda harus menyetujui syarat dan ketentuan");
                 } else {
+                    btnDaftar.setEnabled(false);
                     prosesDaftar(namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko,
                             referralCode, username, password, email);
-                    btnDaftar.setEnabled(false);
                 }
             }
         });
@@ -135,12 +135,8 @@ public class DaftarActivity extends AppCompatActivity {
                     String kode = jsonObject.getString("kode");
                     String pesan = jsonObject.getString("pesan");
                     if (kode.equals("1")) {
-//                        finish();
                         Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(DaftarActivity.this, VerifikasiActivity.class);
-                        startActivity(intent);
                         sendVerificationCode(noTelp);
-                        finish();
                     } else if (kode.equals("2")) {
                         Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
                     } else if (kode.equals("3")){
