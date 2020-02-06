@@ -117,6 +117,7 @@ public class DaftarActivity extends AppCompatActivity {
                 } else {
                     prosesDaftar(namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko,
                             referralCode, username, password, email);
+                    btnDaftar.setEnabled(false);
                 }
             }
         });
@@ -136,10 +137,10 @@ public class DaftarActivity extends AppCompatActivity {
                     if (kode.equals("1")) {
 //                        finish();
                         Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(DaftarActivity.this, VerifikasiActivity.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(DaftarActivity.this, VerifikasiActivity.class);
+                        startActivity(intent);
                         sendVerificationCode(noTelp);
-//                        finish();
+                        finish();
                     } else if (kode.equals("2")) {
                         Toast.makeText(DaftarActivity.this, pesan, Toast.LENGTH_SHORT).show();
                     } else if (kode.equals("3")){
@@ -186,6 +187,7 @@ public class DaftarActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+        btnDaftar.setEnabled(true);
     }
 
     @Override
