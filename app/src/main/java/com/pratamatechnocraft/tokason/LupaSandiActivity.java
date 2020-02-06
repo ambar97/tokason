@@ -56,9 +56,14 @@ public class LupaSandiActivity extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String phoneNumber){
+        if (phoneNumber.substring(0,1).equals("0")){
+            phoneNumber.replace("0","+62");
+        }else if(!phoneNumber.substring(0,1).equals("0") || !phoneNumber.substring(0,3).equals("+62")){
+            phoneNumber = "+62"+phoneNumber;
+        }
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+62"+phoneNumber,
+                phoneNumber,
                 120,
                 TimeUnit.SECONDS,
                 this,
