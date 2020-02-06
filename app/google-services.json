@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "10012147896",
-    "firebase_url": "https://tokason-apps.firebaseio.com",
-    "project_id": "tokason-apps",
-    "storage_bucket": "tokason-apps.appspot.com"
+    "project_number": "641094892219",
+    "firebase_url": "https://tokasonjbr.firebaseio.com",
+    "project_id": "tokasonjbr",
+    "storage_bucket": "tokasonjbr.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:10012147896:android:a289628c75a2e4f949344d",
+        "mobilesdk_app_id": "1:641094892219:android:3f22d42e9c620fa5f4079e",
         "android_client_info": {
           "package_name": "com.pratamatechnocraft.tokason"
         }
       },
       "oauth_client": [
         {
-          "client_id": "10012147896-tc9f3c307np7nflmvp1pj3g1dfhdfo6l.apps.googleusercontent.com",
+          "client_id": "641094892219-t3bbugssnfvkc5u5ijvmau9rqodg3152.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.pratamatechnocraft.tokason",
@@ -23,28 +23,20 @@
           }
         },
         {
-          "client_id": "10012147896-kai97vpdknjtr6vtcungo193gap4clfo.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.pratamatechnocraft.tokason",
-            "certificate_hash": "bc81e214a4f04742ec2f3e5e92d2ddc0b69b10c0"
-          }
-        },
-        {
-          "client_id": "10012147896-jp1m6k7url7ajo8m1261i6a0bgn6l9o8.apps.googleusercontent.com",
+          "client_id": "641094892219-fpqsf55k4q9jd43vcj4r1l9lvjh73glp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBKaE1pF-lNJY2qXqlcgli2lVyPMniEA_o"
+          "current_key": "AIzaSyAHlpT6-fi7lfjGB6dXlgTOutLzFuAAITo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "10012147896-jp1m6k7url7ajo8m1261i6a0bgn6l9o8.apps.googleusercontent.com",
+              "client_id": "641094892219-fpqsf55k4q9jd43vcj4r1l9lvjh73glp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
