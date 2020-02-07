@@ -201,14 +201,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private void sendVerificationCode(String phoneNumber) {
 
+        String noTelp = null;
         if (phoneNumber.substring(0,1).equals("0")){
-            phoneNumber.replace("0","+62");
+            noTelp = "+62"+phoneNumber.substring(1);
         }else if(!phoneNumber.substring(0,1).equals("0") || !phoneNumber.substring(0,3).equals("+62")){
-            phoneNumber = "+62"+phoneNumber;
+            noTelp = "+62"+phoneNumber;
         }
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,
+                noTelp,
                 120,
                 TimeUnit.SECONDS,
                 this,
