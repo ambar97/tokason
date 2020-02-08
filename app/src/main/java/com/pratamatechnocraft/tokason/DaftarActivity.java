@@ -119,6 +119,11 @@ public class DaftarActivity extends AppCompatActivity {
                 } else if (!checkBoxAgrrement.isChecked()) {
                     checkBoxAgrrement.setError("Anda harus menyetujui syarat dan ketentuan");
                 } else {
+                    if (noTelp.substring(0,1).equals("0")){
+                        noTelp = "+62"+noTelp.substring(1);
+                    }else if(!noTelp.substring(0,1).equals("0") || !noTelp.substring(0,3).equals("+62")){
+                        noTelp = "+62"+noTelp;
+                    }
                     btnDaftar.setVisibility(View.GONE);
                     progressBar.setVisibility(View.VISIBLE);
                     prosesDaftar(namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko,
@@ -216,9 +221,15 @@ public class DaftarActivity extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String phoneNumber){
+        String noTelp = null;
+        if (phoneNumber.substring(0,1).equals("0")){
+            noTelp = "+62"+phoneNumber.substring(1);
+        }else if(!phoneNumber.substring(0,1).equals("0") || !phoneNumber.substring(0,3).equals("+62")){
+            noTelp = "+62"+phoneNumber;
+        }
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+62"+phoneNumber,
+                noTelp,
                 120,
                 TimeUnit.SECONDS,
                 DaftarActivity.this,

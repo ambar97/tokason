@@ -81,7 +81,9 @@ public class WaitingConfirmationFragment extends Fragment {
                             final JSONObject userprofile = new JSONObject(response);
                             if (userprofile.getString("status").equals("1")){
                                 startActivity(new Intent(context, MainActivity.class));
-                            } else {
+                            } else if(userprofile.getString("status").equals("2")) {
+                                startActivity(new Intent(context, MainActivity.class));
+                            }else {
                                 Toast.makeText(context, "Masih dalam proses konfirmasi...", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {

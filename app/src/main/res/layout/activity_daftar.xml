@@ -70,7 +70,7 @@
                     android:id="@+id/NotelpPemilik"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="No telp 8123456789"
+                    android:hint="No telp (+628xxxxxxxxxx)"
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 

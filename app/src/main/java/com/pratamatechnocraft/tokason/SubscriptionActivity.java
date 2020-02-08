@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
+import com.pratamatechnocraft.tokason.Fragment.ConfirmationRejectedFragment;
 import com.pratamatechnocraft.tokason.Fragment.SubscriptionFragment;
 import com.pratamatechnocraft.tokason.Fragment.WaitingConfirmationFragment;
 import com.pratamatechnocraft.tokason.Service.SessionManager;
@@ -43,7 +44,12 @@ public class SubscriptionActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.subscription_container, new SubscriptionFragment())
                         .commitNow();
-            } else {
+            } else if (statusBayar.equals("ditolak")){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.subscription_container, new ConfirmationRejectedFragment())
+                        .commitNow();
+            }
+            else {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.subscription_container, new WaitingConfirmationFragment())
                         .commitNow();

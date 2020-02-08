@@ -51,9 +51,16 @@ public class LupaSandiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 phoneNumber = editTextUsernameLupa.getText().toString().trim();
+                if (phoneNumber.substring(0,1).equals("0")){
+                    phoneNumber = "+62"+phoneNumber.substring(1);
+                }else if(!phoneNumber.substring(0,1).equals("0") || !phoneNumber.substring(0,3).equals("+62")){
+                    phoneNumber = "+62"+phoneNumber;
+                }
+
                 if (phoneNumber.isEmpty()){
                     editTextUsernameLupa.setError("Tidak boleh kosong !!");
                 }else{
+                    String noTelp = null;
                     btnLanjutLupaSandi.setVisibility(View.GONE);
                     progressBar.setVisibility(View.VISIBLE);
                     sendVerificationCode(phoneNumber);

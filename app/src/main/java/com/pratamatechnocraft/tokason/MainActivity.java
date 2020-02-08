@@ -278,6 +278,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 intent.putExtra(SubscriptionActivity.EXTRA_SUBSCRIPTION, "konfirmasibayar");
                                 startActivity(intent);
                                 finish();
+                            } else if (status.equals("4")) {
+                                Intent intent = new Intent(MainActivity.this, SubscriptionActivity.class);
+                                intent.putExtra(SubscriptionActivity.EXTRA_SUBSCRIPTION, "ditolak");
+                                startActivity(intent);
+                                finish();
                             }
                             namaUser.setText(userprofile.getString("nama_depan") + " " + userprofile.getString("nama_belakang"));
                             urlGambar = baseUrl + userprofile.getString("foto");
