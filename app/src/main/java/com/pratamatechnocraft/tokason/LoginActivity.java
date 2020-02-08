@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
@@ -200,9 +201,16 @@ public class LoginActivity extends AppCompatActivity {
 
     private void sendVerificationCode(String phoneNumber) {
 
+        String noTelp = null;
+        if (phoneNumber.substring(0,1).equals("0")){
+            noTelp = "+62"+phoneNumber.substring(1);
+        }else if(!phoneNumber.substring(0,1).equals("0") || !phoneNumber.substring(0,3).equals("+62")){
+            noTelp = "+62"+phoneNumber;
+        }
+
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+62" + phoneNumber,
-                60,
+                noTelp,
+                120,
                 TimeUnit.SECONDS,
                 this,
                 mCall
