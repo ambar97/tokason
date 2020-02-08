@@ -476,7 +476,7 @@ public class InvoiceActivity extends AppCompatActivity {
             bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.close();
 
-            bmpUri = FileProvider.getUriForFile(InvoiceActivity.this, "com.pratamatechnocraft.sisirKayuManis.fileprovider", file);
+            bmpUri = FileProvider.getUriForFile(InvoiceActivity.this, "com.pratamatechnocraft.tokason.fileprovider", file);
 
         } catch (IOException e) {
             Log.d("TAG", "getBitmapFromDrawable: "+e);

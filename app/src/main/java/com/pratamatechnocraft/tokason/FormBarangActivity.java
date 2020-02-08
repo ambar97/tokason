@@ -252,39 +252,45 @@ public class FormBarangActivity extends AppCompatActivity {
                                     final int[] kategorinya = {checkedKategori};
                                     JSONObject jsonObject = new JSONObject(response);
                                     JSONArray data = jsonObject.getJSONArray("data");
-                                    final CharSequence[] items = new CharSequence[data.length()];
-                                    final String[] items1 = new String[data.length()];
-                                    items[0]="";
-                                    for (int i = 0; i<data.length(); i++){
-                                        JSONObject kategoriobject = data.getJSONObject( i );
-                                        items[i]= kategoriobject.getString( "nama_kategori");
-                                        items1[i]= kategoriobject.getString( "kd_kategori");
+                                    if (data.length() > 0 ) {
+                                        final CharSequence[] items = new CharSequence[data.length()];
+                                        final String[] items1 = new String[data.length()];
+                                        items[0] = "";
+                                        for (int i = 0; i < data.length(); i++) {
+                                            JSONObject kategoriobject = data.getJSONObject(i);
+                                            items[i] = kategoriobject.getString("nama_kategori");
+                                            items1[i] = kategoriobject.getString("kd_kategori");
+                                        }
+
+                                        builder.setSingleChoiceItems(items, checkedKategori, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // user checked an item
+                                                pilihKategori = String.valueOf(items[which]);
+                                                kdKategori = String.valueOf(items1[which]);
+                                                kategorinya[0] = which;
+                                            }
+                                        });
+
+                                        // add OK and Cancel buttons
+                                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // user clicked OK
+                                                txtKdKategoriBarangForm.setText(kdKategori);
+                                                txtNamaKategoriBarangForm.setText(pilihKategori);
+                                                checkedKategori = kategorinya[0];
+                                            }
+                                        });
+                                        builder.setNegativeButton("Cancel", null);
+
+                                        AlertDialog alert = builder.create();
+                                        alert.show();
+                                    } else {
+                                        builder.setMessage("Belum ada data kategori,\ningin menambahkan?");
+                                        builder.setPositiveButton("Ya", null);
+                                        builder.setNegativeButton("Tidak", null);
                                     }
-
-                                    builder.setSingleChoiceItems(items, checkedKategori, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            // user checked an item
-                                            pilihKategori =String.valueOf(items[which]);
-                                            kdKategori =String.valueOf(items1[which]);
-                                            kategorinya[0]=which;
-                                        }
-                                    });
-
-                                    // add OK and Cancel buttons
-                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            // user clicked OK
-                                            txtKdKategoriBarangForm.setText(kdKategori);
-                                            txtNamaKategoriBarangForm.setText(pilihKategori);
-                                            checkedKategori=kategorinya[0];
-                                        }
-                                    });
-                                    builder.setNegativeButton("Cancel", null);
-
-                                    AlertDialog alert = builder.create();
-                                    alert.show();
                                 }catch (JSONException e){
                                     e.printStackTrace();
                                 }
