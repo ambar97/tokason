@@ -59,6 +59,13 @@
             android:layout_height="wrap_content"
             android:text="Kirim"
             android:textAllCaps="false"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/kirimulangverifikasi"

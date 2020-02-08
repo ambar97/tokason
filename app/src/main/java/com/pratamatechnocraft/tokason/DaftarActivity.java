@@ -1,5 +1,6 @@
 package com.pratamatechnocraft.tokason;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,7 @@ public class DaftarActivity extends AppCompatActivity {
     CheckBox checkBoxAgrrement;
     TextView textView;
     Button btnDaftar;
+    ProgressBar progressBar;
     String namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko, referralCode, username, password, email;
     BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
     private String baseUrl = baseUrlApiModel.getBaseURL();
@@ -63,6 +66,7 @@ public class DaftarActivity extends AppCompatActivity {
         txtRefferalCode = findViewById(R.id.Referral);
         checkBoxAgrrement = findViewById(R.id.checkBox);
         btnDaftar = findViewById(R.id.btnLanjutDaftar);
+        progressBar = findViewById(R.id.progressBar);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +119,8 @@ public class DaftarActivity extends AppCompatActivity {
                 } else if (!checkBoxAgrrement.isChecked()) {
                     checkBoxAgrrement.setError("Anda harus menyetujui syarat dan ketentuan");
                 } else {
-                    btnDaftar.setEnabled(false);
+                    btnDaftar.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.VISIBLE);
                     prosesDaftar(namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko,
                             referralCode, username, password, email);
                 }
@@ -154,12 +159,18 @@ public class DaftarActivity extends AppCompatActivity {
                     e.printStackTrace();
                     Toast.makeText(DaftarActivity.this, "Periksa koneksi & coba lagi", Toast.LENGTH_SHORT).show();
                 }
+
+                btnDaftar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 Toast.makeText(DaftarActivity.this, "Periksa koneksi & coba lagi", Toast.LENGTH_SHORT).show();
+
+                btnDaftar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         }) {
 
@@ -183,7 +194,6 @@ public class DaftarActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-        btnDaftar.setEnabled(true);
     }
 
     @Override

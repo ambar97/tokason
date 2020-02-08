@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -32,6 +33,7 @@ import java.util.Map;
 public class PasswordBaruActivity extends AppCompatActivity {
     EditText passbaru,barulagi;
     Button finish;
+    ProgressBar progressBar;
     BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
     private String baseUrl = baseUrlApiModel.getBaseURL();
     private static String URL_Daftar = "api/user";
@@ -54,6 +56,7 @@ public class PasswordBaruActivity extends AppCompatActivity {
         passbaru = findViewById(R.id.inputPasswordBarus);
         barulagi = findViewById(R.id.inputPasswordBaruLagis);
         finish = findViewById(R.id.buttonSimpanUbahPasss);
+        progressBar = findViewById(R.id.progressBar);
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +66,8 @@ public class PasswordBaruActivity extends AppCompatActivity {
                 if (!p1.equals(p2)){
                     Toast.makeText(PasswordBaruActivity.this,"Password Harus Sama",Toast.LENGTH_SHORT).show();
                 } else {
+                    finish.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.VISIBLE);
                     ubahPassword(no_telp,p1);
                 }
             }
@@ -92,12 +97,18 @@ public class PasswordBaruActivity extends AppCompatActivity {
                     e.printStackTrace();
                     Toast.makeText(PasswordBaruActivity.this, "Periksa koneksi & coba lagi", Toast.LENGTH_SHORT).show();
                 }
+
+                finish.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 Toast.makeText(PasswordBaruActivity.this, "Periksa koneksi & coba lagi", Toast.LENGTH_SHORT).show();
+
+                finish.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         }) {
 

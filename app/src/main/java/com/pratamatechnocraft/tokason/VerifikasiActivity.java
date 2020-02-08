@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class VerifikasiActivity extends AppCompatActivity {
     String otp, from, username;
     SessionManager sessionManager;
     TextView txtInfoTelp;
+    ProgressBar progressBar;
     BaseUrlApiModel baseUrlApiModel = new BaseUrlApiModel();
     private String baseUrl = baseUrlApiModel.getBaseURL();
     private static String URL_Daftar = "api/user";
@@ -60,6 +62,7 @@ public class VerifikasiActivity extends AppCompatActivity {
         btnVerify = findViewById(R.id.btnKirimVerifikasi);
         txtOtp = findViewById(R.id.editTextKodeVerifikasi);
         txtInfoTelp = findViewById(R.id.txt_info_telp);
+        progressBar = findViewById(R.id.progressBar);
         String string = txtInfoTelp.getText().toString();
 
         Toolbar toolbar = findViewById(R.id.toolbar_verifikasi);
@@ -81,6 +84,8 @@ public class VerifikasiActivity extends AppCompatActivity {
         btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnVerify.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
                 otp = txtOtp.getText().toString().trim();
                 if (!otp.isEmpty()) {
                     verifyOtp(verificationId, otp, from);
@@ -103,7 +108,6 @@ public class VerifikasiActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         if (task.isSuccessful()) {
                             mAuth.getCurrentUser().delete();
                             if (from.equals("daftar")) {
@@ -129,6 +133,8 @@ public class VerifikasiActivity extends AppCompatActivity {
                     }
 
                 });
+        btnVerify.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 
     private void changeStatusUser(final String username) {

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +27,7 @@ public class LupaSandiActivity extends AppCompatActivity {
     EditText editTextUsernameLupa;
     Button btnLanjutLupaSandi;
     String phoneNumber;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class LupaSandiActivity extends AppCompatActivity {
 
         editTextUsernameLupa = findViewById(R.id.editTextUsernameLupa);
         btnLanjutLupaSandi = findViewById(R.id.btnLanjutLupaSandi);
+        progressBar = findViewById(R.id.progressBar);
 
         btnLanjutLupaSandi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +54,8 @@ public class LupaSandiActivity extends AppCompatActivity {
                 if (phoneNumber.isEmpty()){
                     editTextUsernameLupa.setError("Tidak boleh kosong !!");
                 }else{
+                    btnLanjutLupaSandi.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.VISIBLE);
                     sendVerificationCode(phoneNumber);
                 }
             }
@@ -72,6 +77,9 @@ public class LupaSandiActivity extends AppCompatActivity {
                 this,
                 mCall
         );
+
+        btnLanjutLupaSandi.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCall = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {

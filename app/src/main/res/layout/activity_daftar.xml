@@ -198,6 +198,13 @@
                 android:background="@color/blue_600"
                 android:text="Lanjut"
                 android:textColor="#fff" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>
