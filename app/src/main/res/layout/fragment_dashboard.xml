@@ -28,25 +28,36 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="@drawable/background23"
                         android:gravity="center"
                         android:orientation="vertical">
-
+                        <ViewFlipper
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:id="@+id/vlipper">
+                        </ViewFlipper>
+                    </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp">
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginTop="80dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="TOKASON"
+                            android:text="SELAMAT DATANG"
                             android:textColor="#fff"
-                            android:textSize="15dp" />
+                            android:textSize="12dp" />
 
                         <TextView
+                            android:gravity="center"
+                            android:layout_marginTop="95dp"
                             android:id="@+id/tv_nama_outlet"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             tools:text="TOKO CONTONG"
                             android:textColor="#fff"
                             android:textSize="20dp" />
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"

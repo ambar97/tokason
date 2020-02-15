@@ -44,7 +44,7 @@
                 android:layout_height="300dp"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
-                tools:src="@drawable/default_foto_user" />
+                tools:src="@drawable/default_foto" />
 
             <Button
                 android:id="@+id/pilih_foto"

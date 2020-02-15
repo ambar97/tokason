@@ -40,7 +40,6 @@ import com.pratamatechnocraft.tokason.Fragment.LaporanFragment;
 import com.pratamatechnocraft.tokason.Fragment.LaporanLabaRugiFragment;
 import com.pratamatechnocraft.tokason.Fragment.ProfileFragment;
 import com.pratamatechnocraft.tokason.Fragment.SettingPrinterFragment;
-import com.pratamatechnocraft.tokason.Fragment.SubscriptionFragment;
 import com.pratamatechnocraft.tokason.Fragment.TabLayoutFragment;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
 import com.pratamatechnocraft.tokason.Service.Config;
@@ -288,8 +287,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             urlGambar = baseUrl + userprofile.getString("foto");
                             Glide.with(MainActivity.this)
                                     // LOAD URL DARI INTERNET
-                                    .load(urlGambar).placeholder(getResources().getDrawable(R.drawable.default_foto_user))
-                                    .error(getResources().getDrawable(R.drawable.default_foto_user))
+                                    .load(urlGambar).placeholder(getResources().getDrawable(R.drawable.default_foto))
+                                    .error(getResources().getDrawable(R.drawable.default_foto))
                                     // LOAD GAMBAR AWAL SEBELUM GAMBAR UTAMA MUNCUL, BISA DARI LOKAL DAN INTERNET
                                     .into(fotoUser);
 //                        if(userprofile.getString("status_user").equals("0")){

@@ -71,7 +71,7 @@
                                 android:layout_height="80dp"
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center_horizontal|center_vertical"
-                                android:src="@drawable/default_foto_user"
+                                android:src="@drawable/default_foto"
                                 app:civ_border_color="@color/colorSecondaryText"
                                 app:civ_border_width="2dp" />
                         </RelativeLayout>

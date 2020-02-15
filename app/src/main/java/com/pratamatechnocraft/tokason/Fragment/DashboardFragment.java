@@ -30,9 +30,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.pratamatechnocraft.tokason.MainActivity;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
@@ -61,6 +63,7 @@ public class DashboardFragment extends Fragment {
     private static final String API_URL_LOAD = "api/user?api=dataprofile&kd_user=";
     private static final String API_URL = "api/user";
     SwipeRefreshLayout swipeRefreshLayout;
+    ViewFlipper viewFlipper;
 
 
     @Nullable
@@ -68,10 +71,16 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         context = getActivity();
         sessionManager = new SessionManager( getContext() );
+
         HashMap<String, String> user = sessionManager.getUserDetail();
         navigationView = getActivity().findViewById( R.id.nav_view );
         if (Integer.parseInt( user.get( sessionManager.LEVEL_USER ) )==0){
             view = inflater.inflate( R.layout.fragment_dashboard, container, false);
+            viewFlipper = view.findViewById(R.id.vlipper);
+            int image[] = {R.drawable.slide1,R.drawable.slide1,R.drawable.slide1,R.drawable.slide1};
+            for (int images:image){
+                flipper(images);
+            }
             kliktransaksijual = view.findViewById(R.id.cardhometransaksipenjualan);
             kliktransaksibeli = view.findViewById(R.id.cardhometransaksipembelian);
             klikbarang = view.findViewById(R.id.cardhomebarang);
@@ -303,6 +312,16 @@ public class DashboardFragment extends Fragment {
         return view;
     }
 
+    public void flipper(int image){
+        ImageView imageView = new ImageView(getContext());
+        imageView.setBackgroundResource(image);
+        viewFlipper.addView(imageView);
+        viewFlipper.setFlipInterval(6000);
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setInAnimation(getContext(), android.R.anim.slide_in_left);
+        viewFlipper.setOutAnimation(getContext(),android.R.anim.slide_out_right);
+//        viewFlipper.setOutAnimation(getContext(),android.R.anim.);
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -375,7 +394,7 @@ public class DashboardFragment extends Fragment {
                             Log.d("TAG", "onResponse: "+response);
                             final JSONObject userprofile = new JSONObject(response);
                             txtJatuhTempo.setText(userprofile.getString("tgl_jatuh_tempo"));
-                            txtNamaOutlet.setText(userprofile.getString("nama_outlet"));
+                            txtNamaOutlet.setText("Toko "+userprofile.getString("nama_outlet"));
                             if (userprofile.getString("kode_referal").equals("")){
                                 checkReferral(kd_user);
                                 Log.d("A", "onResponse: DIALOG");

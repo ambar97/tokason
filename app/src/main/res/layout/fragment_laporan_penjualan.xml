@@ -138,7 +138,6 @@
                         android:textColor="@color/ColorPrimaryText"
                         android:textSize="14sp" />
                 </LinearLayout>
-
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -150,63 +149,61 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="4dp"
                     app:contentPadding="5dp">
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtJmlTransaksi"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textColor="@color/ColorPrimaryText"
-                            android:textSize="36sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:textColor="#000"
+                                android:textSize="18dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Jumlah Transaksi"
+                                android:layout_marginBottom="5dp"/>
+                            <TextView
+                                android:textSize="18dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="21dp"
+                                android:text=":"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtJmlTransaksi"
+                                android:textSize="18dp"
+                                android:textColor="#000"
+                                android:layout_marginLeft="10dp"
+                                android:text="0"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jumlah Transaksi"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginHorizontal="2dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="4dp"
-                    app:contentPadding="5dp">
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtPendapatanLaporanPenjualan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Rp. 0"
-                            android:textColor="@color/ColorPrimaryText"
-                            android:textSize="36sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Pendapatan"
-                            android:textSize="14sp" />
+                            android:orientation="horizontal">
+                            <TextView
+                                android:textColor="#000"
+                                android:textSize="18dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total Pendapatan"/>
+                            <TextView
+                                android:textSize="18dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="21dp"
+                                android:text=":"/>
+                            <TextView
+                                android:textSize="18dp"
+                                android:textColor="#000"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtPendapatanLaporanPenjualan"
+                                android:layout_marginLeft="10dp"
+                                android:text="Rp. 0"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -234,10 +231,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@android:color/darker_gray"
                             android:orientation="horizontal"
                             android:padding="5dp">
-
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textAllCaps="false"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/textView26"
                                 android:layout_width="match_parent"
@@ -254,7 +257,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="end"
-                                android:text="Harga Jual"
+                                android:text="Harga"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
@@ -264,7 +267,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="end"
-                                android:text="Jml Terjual"
+                                android:text="Jumlah"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
@@ -292,45 +295,43 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1" />
-
-                        <LinearLayout
+                        <View
+                            android:id="@+id/divider3"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="2dp"
                             android:layout_weight="1"
-                            android:background="@android:color/darker_gray"
-                            android:orientation="horizontal"
-                            android:padding="5dp">
-
+                            android:background="?android:attr/listDivider" />
+                        <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
                             <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="Total Harga : "
-                                android:textAllCaps="false"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
-
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:text="Total: "
+                            android:textColor="#000"
+                            android:textAllCaps="false"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
                             <TextView
-                                android:id="@+id/txtHargaTotalBarangTerjual"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
+                            android:id="@+id/txtHargaTotalBarangTerjual"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
                         </LinearLayout>
-
                     </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
-
             </LinearLayout>
         </ScrollView>
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
     </LinearLayout>
-
 </RelativeLayout>
 

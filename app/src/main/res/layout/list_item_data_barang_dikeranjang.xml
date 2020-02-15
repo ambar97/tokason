@@ -37,7 +37,7 @@
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/default_foto_user"
+                    android:src="@drawable/default_foto"
                     app:civ_border_color="#fff" />
 
             </RelativeLayout>
