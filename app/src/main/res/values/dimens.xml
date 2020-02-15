@@ -16,4 +16,7 @@
     <dimen name="activity_margin">10dp</dimen>
     <dimen name="badge_count_textsize">12dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="headerTextSize">25sp</dimen>
+    <dimen name="newsMoreTextSize">12sp</dimen>
+    <dimen name="loginViewsMargin">20dp</dimen>
 </resources>

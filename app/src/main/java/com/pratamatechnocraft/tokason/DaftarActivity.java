@@ -75,14 +75,14 @@ public class DaftarActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Toolbar toolbar = findViewById(R.id.toolbar_daftar);
-        setSupportActionBar(toolbar);
-        this.setTitle("Daftar Baru");
-        toolbar.setSubtitleTextColor(ContextCompat.getColor(this, R.color.colorIcons));
+//        Toolbar toolbar = findViewById(R.id.toolbar_daftar);
+//        setSupportActionBar(toolbar);
+//        this.setTitle("Daftar Baru");
+//        toolbar.setSubtitleTextColor(ContextCompat.getColor(this, R.color.colorIcons));
         final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp);
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.colorIcons), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         btnDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

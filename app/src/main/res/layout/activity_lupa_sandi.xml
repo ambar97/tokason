@@ -47,7 +47,7 @@
 
         <Button
             android:layout_marginTop="20dp"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/loginButton"
             android:id="@+id/btnLanjutLupaSandi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
