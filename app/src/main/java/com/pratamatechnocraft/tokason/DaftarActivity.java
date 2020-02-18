@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class DaftarActivity extends AppCompatActivity {
             txtRefferalCode, txtUsername, txtPassword, txtEmail;
     CheckBox checkBoxAgrrement;
     TextView textView;
+    ImageView imgLogin;
     Button btnDaftar;
     ProgressBar progressBar;
     String namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko, referralCode, username, password, email;
@@ -65,6 +67,7 @@ public class DaftarActivity extends AppCompatActivity {
         checkBoxAgrrement = findViewById(R.id.checkBox);
         btnDaftar = findViewById(R.id.btnLanjutDaftar);
         progressBar = findViewById(R.id.progressBar);
+        imgLogin = findViewById(R.id.img_login);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +132,13 @@ public class DaftarActivity extends AppCompatActivity {
                     prosesDaftar(namaDepan, namaBelakang, noTelp, alamat, namaToko, alamatToko,
                             referralCode, username, password, email);
                 }
+            }
+        });
+
+        imgLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
     }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     EditText eTxtUsername, eTxtPassword;
+    ImageView imgDaftar;
     TextView  btnLupaSandi, btnDaftar;
     String username, password, phoneNumber;
     ProgressBar loading;
@@ -68,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         eTxtUsername = findViewById(R.id.editTxtUsernameLogin);
         eTxtPassword = findViewById(R.id.editTxtPasswordLogin);
         loading = findViewById(R.id.progressBar);
-
+        imgDaftar = findViewById(R.id.img_daftar);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +91,15 @@ public class LoginActivity extends AppCompatActivity {
         btnDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, DaftarActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        imgDaftar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent i = new Intent(LoginActivity.this, DaftarActivity.class);
                 startActivity(i);
                 finish();

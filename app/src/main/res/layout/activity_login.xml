@@ -172,11 +172,13 @@
         android:background="@drawable/ic_side_bg" />
 
     <ImageView
+        android:id="@+id/img_daftar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="11dp"
         android:layout_marginBottom="30dp"
+        android:clickable="true"
         android:src="@drawable/ic_add_img" />
 </RelativeLayout>
