@@ -1,6 +1,5 @@
 package com.pratamatechnocraft.tokason;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.android.volley.Request;
@@ -119,9 +117,11 @@ public class DaftarActivity extends AppCompatActivity {
                 } else if (!checkBoxAgrrement.isChecked()) {
                     checkBoxAgrrement.setError("Anda harus menyetujui syarat dan ketentuan");
                 } else {
-                    if (noTelp.substring(0,1).equals("0")){
+                    if (noTelp.substring(0,3).equals("+62")){
+                        noTelp = noTelp;
+                    } else if (noTelp.substring(0,1).equals("0")){
                         noTelp = "+62"+noTelp.substring(1);
-                    }else if(!noTelp.substring(0,1).equals("0") || !noTelp.substring(0,3).equals("+62")){
+                    } else {
                         noTelp = "+62"+noTelp;
                     }
                     btnDaftar.setVisibility(View.GONE);
@@ -221,10 +221,12 @@ public class DaftarActivity extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String phoneNumber){
-        String noTelp = null;
-        if (phoneNumber.substring(0,1).equals("0")){
+        String noTelp;
+        if (phoneNumber.substring(0,3).equals("+62")){
+            noTelp = phoneNumber;
+        } else if (phoneNumber.substring(0,1).equals("0")){
             noTelp = "+62"+phoneNumber.substring(1);
-        }else if(!phoneNumber.substring(0,1).equals("0") || !phoneNumber.substring(0,3).equals("+62")){
+        } else {
             noTelp = "+62"+phoneNumber;
         }
 

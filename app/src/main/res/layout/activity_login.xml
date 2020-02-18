@@ -1,90 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@color/login_bk_color"
     android:focusableInTouchMode="true"
-    android:gravity="center"
-    android:layout_gravity="center">
+    android:gravity="center">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:paddingTop="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
                     style="@style/viewParent.headerText.NoMode"
-                    android:text="LOGIN \nTOKASON \nhere !"/>
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="LOGIN \nTOKASON \nhere !" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_register_hero"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_register_hero" />
             </RelativeLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputEmail"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
+
                 <EditText
                     android:id="@+id/editTxtUsernameLogin"
                     style="@style/modifiedEditText"
+                    android:hint="Username / No Telp"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:hint="Username / No Telp"/>
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputPassword"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
+
                 <EditText
                     android:id="@+id/editTxtPasswordLogin"
                     style="@style/modifiedEditText"
                     android:hint="Password"
-                    android:maxLines="1"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/btnLupaSandi"
                 style="@style/viewParent"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
                 android:text="Forgot Password?"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/newsMoreTextSize"
-                android:layout_gravity="end"
-                android:layout_marginTop="10dp"/>
+                android:textSize="@dimen/newsMoreTextSize" />
+
             <Button
                 android:id="@+id/buttonLogin"
-                android:layout_marginTop="@dimen/loginViewsMargin"
-                android:layout_width="200dp"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"
                 style="@style/loginButton"
-                android:text="LOGIN"/>
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:text="LOGIN" />
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <ProgressBar
-                    android:layout_marginTop="-100dp"
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:visibility="gone"/>
+                    android:layout_marginTop="-100dp"
+                    android:visibility="gone" />
             </RelativeLayout>
 
             <!--            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
@@ -98,69 +108,75 @@
             <!--                app:spinning_bar_padding="6dp"-->
             <!--                app:initialCornerAngle="27dp"/>-->
             <TextView
-                style="@style/parent"
                 android:id="@+id/btnDaftar"
+                style="@style/parent"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:text="New user? Register Now"
                 android:textAlignment="center"
-                android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
                 android:textSize="17sp"
-                android:text="New user? Register Now"
-                android:layout_marginTop="@dimen/loginViewsMargin"/>
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="12"
+                android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:layout_marginTop="30dp">
+                android:weightSum="12">
+
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimaryDark" />
+
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Toko Kasir Online"
                     android:layout_weight="6"
-                    android:textSize="12sp"
-                    android:textAlignment="center"/>
+                    android:text="Toko Kasir Online"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
+
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimaryDark" />
             </LinearLayout>
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:layout_marginTop="20dp">-->
-<!--                <ImageView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:src="@drawable/ic_facebook"/>-->
-<!--                <ImageView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:src="@drawable/ic_google_plus"-->
-<!--                    android:layout_marginLeft="10dp"/>-->
-<!--            </LinearLayout>-->
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:gravity="center"-->
+            <!--                android:layout_marginTop="20dp">-->
+            <!--                <ImageView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:src="@drawable/ic_facebook"/>-->
+            <!--                <ImageView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:src="@drawable/ic_google_plus"-->
+            <!--                    android:layout_marginLeft="10dp"/>-->
+            <!--            </LinearLayout>-->
         </LinearLayout>
     </ScrollView>
+
     <View
-        android:layout_marginTop="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_width="11dp"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_side_bg"/>
-    <ImageView
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_side_bg" />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_img"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginRight="11dp"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/ic_add_img" />
 </RelativeLayout>
