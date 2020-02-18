@@ -20,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
 import com.pratamatechnocraft.tokason.MainActivity;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
 import com.pratamatechnocraft.tokason.R;
@@ -82,6 +81,8 @@ public class WaitingConfirmationFragment extends Fragment {
                             if (userprofile.getString("status").equals("1")){
                                 startActivity(new Intent(context, MainActivity.class));
                             } else if(userprofile.getString("status").equals("2")) {
+                                startActivity(new Intent(context, MainActivity.class));
+                            } else if(userprofile.getString("status").equals("4")) {
                                 startActivity(new Intent(context, MainActivity.class));
                             }else {
                                 Toast.makeText(context, "Masih dalam proses konfirmasi...", Toast.LENGTH_SHORT).show();
