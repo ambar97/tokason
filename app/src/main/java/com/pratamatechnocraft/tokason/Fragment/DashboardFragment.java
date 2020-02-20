@@ -4,25 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.core.view.MenuItemCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.cardview.widget.CardView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,10 +17,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.pratamatechnocraft.tokason.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 import com.pratamatechnocraft.tokason.Model.BaseUrlApiModel;
-import com.pratamatechnocraft.tokason.Service.SessionManager;
 import com.pratamatechnocraft.tokason.R;
+import com.pratamatechnocraft.tokason.Service.SessionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +42,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.zip.Inflater;
 
 public class DashboardFragment extends Fragment {
 
@@ -395,9 +389,11 @@ public class DashboardFragment extends Fragment {
                             final JSONObject userprofile = new JSONObject(response);
                             txtJatuhTempo.setText(userprofile.getString("tgl_jatuh_tempo"));
                             txtNamaOutlet.setText("Toko "+userprofile.getString("nama_outlet"));
-                            if (userprofile.getString("kode_referal").equals("")){
-                                checkReferral(kd_user);
-                                Log.d("A", "onResponse: DIALOG");
+                            if (userprofile.getString("status").equals("1")) {
+                                if (userprofile.getString("kode_referal").equals("")) {
+                                    checkReferral(kd_user);
+                                    Log.d("A", "onResponse: DIALOG");
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -434,11 +430,11 @@ public class DashboardFragment extends Fragment {
                         Object checkedItem = lw.getAdapter().getItem(lw.getCheckedItemPosition());
                         String kd;
                         if (checkedItem.equals("Media Sosial")){
-                            kd = "1";
+                            kd = "876797";
                         }else if(checkedItem.equals("Surat Kabar")) {
-                            kd = "2";
+                            kd = "suratkabar";
                         } else {
-                            kd = "3";
+                            kd = "oranglain";
                         }
                         kirimReferal(kd, kd_user);
                     }

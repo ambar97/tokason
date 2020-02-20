@@ -23,7 +23,7 @@
         <item>Orang lain</item>
     </string-array>
 
-    <string name="info_rekening">Silakan Bayar ke rekening BNI \n<b>0902488662</b>\n atas nama\n Alifiah Wahyu Widya\nsebesar  </string>
+    <string name="info_rekening">Silakan Upload Bukti Transfer\N Pembayar melalui rekening BNI \n<b>0902488662</b>\n atas nama\n Alifiah Wahyu Widya\nsebesar  </string>
     <string name="waiting_subscription">Tokason sedang melakukan verifikasi pembayaran Anda\n Mohon menunggu ...</string>
     <string name="pembayaran_ditolak">Maaf, kami masih belum menerima pembayaran sewa aplikasi Tokason. Jika Anda sudah melakukan pembayaran, harap upload kembali bukti transfer tersebut atau hubungi nomor di bawah ini\n <b>089683054109</b> via Whatsapp pada pukul 07.00 - 20.00 WIB </string>
 </resources>

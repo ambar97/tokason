@@ -1,11 +1,11 @@
 package com.pratamatechnocraft.tokason.Service;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.pratamatechnocraft.tokason.LoginActivity;
-import com.pratamatechnocraft.tokason.MainActivity;
 
 import java.util.HashMap;
 
@@ -78,7 +78,7 @@ public class SessionManager {
         if (!this.isLoggin()) {
             Intent intent = new Intent(context, LoginActivity.class);
             context.startActivity(intent);
-            ((MainActivity) context).finish();
+            ((Activity) context).finish();
         }
     }
 
@@ -96,7 +96,7 @@ public class SessionManager {
         editor.commit();
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
-        ((MainActivity) context).finish();
+        ((Activity) context).finish();
 
     }
 }
