@@ -11,6 +11,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -168,7 +170,7 @@ public class DetailUserActivity extends AppCompatActivity {
                                         .into(fotoUserDetail);
                             }
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Log.d("Detail", "Error : ", e);
                             Toast.makeText(DetailUserActivity.this, "Periksa koneksi & coba lagi", Toast.LENGTH_SHORT).show();
                         }
                         refreshDetailUser.setRefreshing( false );

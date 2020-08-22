@@ -128,10 +128,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void prosesLogin(final String user, final String pass) {
         loading.setVisibility(View.VISIBLE);
+        Log.d("LOGIN", "PROSES LOGIN");
         btnLogin.setVisibility(View.GONE);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + URL_LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d("TAG", "onResponse: berhasil");
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
@@ -165,8 +167,19 @@ public class LoginActivity extends AppCompatActivity {
                             break;
                         case "4": {
                             JSONObject data_user = jsonObject.getJSONObject("data_user");
-                            phoneNumber = String.valueOf(data_user.getString("no_telp"));
-                            sendVerificationCode(phoneNumber);
+                            String kd_user = data_user.getString("kd_user").trim();
+                            String level_user = String.valueOf(data_user.getInt("level_user"));
+                            String kd_outlet = String.valueOf(data_user.getInt("kd_outlet"));
+
+                            sessionManager.createSession(kd_user, level_user, kd_outlet);
+
+                            Toast.makeText(LoginActivity.this, "Login Berhasil !", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(i);
+                            finish();
+
+                            loading.setVisibility(View.GONE);
+                            btnLogin.setVisibility(View.VISIBLE);
                             break;
                         }
 

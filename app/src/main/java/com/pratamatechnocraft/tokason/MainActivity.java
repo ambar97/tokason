@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
+                        Log.d("MainActivity", "Error : "+error);
                     }
                 }
         ) {
